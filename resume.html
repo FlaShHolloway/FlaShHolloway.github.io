@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jograna Bhumit - Resume</title>
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2300ffff'/%3E%3Cstop offset='100%25' stop-color='%23ff00ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cstyle%3E@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900');%3C/style%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a' stroke='url(%23g)' stroke-width='5'/%3E%3Ctext x='50%25' y='50%25' font-family='Orbitron,sans-serif' font-size='50' font-weight='900' fill='url(%23g)' text-anchor='middle' dy='.35em'%3EJB%3C/text%3E%3C/svg%3E">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.75in;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 1rem;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .contact-item {
+            color: #34495e;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section {
+            margin: 1.5rem 0;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.3rem;
+        }
+        
+        .summary {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c3e50;
+            text-align: justify;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid #ecf0f1;
+            position: relative;
+        }
+        
+        .experience-item::before, .education-item::before, .project-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #3498db;
+        }
+        
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+        
+        .company {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #3498db;
+            margin-bottom: 0.2rem;
+        }
+        
+        .duration {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 0.8rem;
+        }
+        
+        .description {
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        
+        .description ul {
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .description li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ecf0f1;
+        }
+        
+        .skill-category-title {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background: #3498db;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .projects-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .project-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-category-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #bdc3c7;
+        }
+        
+        .project-title {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+        
+        .project-subtitle {
+            font-size: 0.9rem;
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+        }
+        
+        @media print {
+            body {
+                padding: 0.5in;
+                max-width: none;
+            }
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">JOGRANA BHUMIT</div>
+        <div class="contact-info">
+            <div class="contact-item">📧 jograna.bhumit@gmail.com</div>
+            <div class="contact-item">💼 linkedin.com/in/jograna-bhumit</div>
+            <div class="contact-item">🌐 https://flashholloway.github.io/</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional Summary</div>
+        <div class="summary">
+            <span class="highlight">Innovative Full-Stack Developer</span> with extensive expertise in modern web technologies, AI/ML implementations, and cloud infrastructure. Proven track record in <span class="highlight">scalable system architecture</span>, automation, and DevOps practices. Experienced in leading research projects and delivering enterprise-level solutions across blockchain, artificial intelligence, and cybersecurity domains. Strong background in <span class="highlight">end-to-end product development</span> from conception to deployment with focus on performance optimization and user experience.
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Technical Expertise</div>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <div class="skill-category-title">🚀 Programming & Frameworks</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">JavaScript (ES6+)</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">Laravel</span>
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">WordPress</span>
+                    <span class="skill-tag">Fast API</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-category-title">☁️ Cloud & DevOps</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">CI/CD</span>
+                    <span class="skill-tag">Git/GitLab</span>
+                    <span class="skill-tag">Redis</span>
+                    <span class="skill-tag">Linux Administration</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-category-title">🤖 AI/ML & Data Science</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Deep Learning</span>
+                    <span class="skill-tag">LLM Integration</span>
+                    <span class="skill-tag">ComfyUI</span>
+                    <span class="skill-tag">n8n</span>
+                    <span class="skill-tag">OpenHands</span>
+                    <span class="skill-tag">Model Training</span>
+                    <span class="skill-tag">Data Pipeline</span>
+                    <span class="skill-tag">Research & Publication</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <div class="skill-category-title">🔒 Database & Security</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">MySQL/MariaDB</span>
+                    <span class="skill-tag">SQL Optimization</span>
+                    <span class="skill-tag">Blockchain</span>
+                    <span class="skill-tag">Smart Contracts</span>
+                    <span class="skill-tag">Cybersecurity</span>
+                    <span class="skill-tag">IoT Integration</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        <div class="experience-item">
+            <div class="job-title">Research & Development Engineer | IT Infrastructure Lead</div>
+            <div class="company">Gyanmanjari Innovative University</div>
+            <div class="duration">February 2023 - May 2025 | 2+ Years</div>
+            <div class="description">
+                <ul>
+                    <li><strong>Enterprise System Architecture:</strong> Designed and deployed comprehensive College Management System serving 4000+ users daily, streamlining operations for faculty, staff, and students</li>
+                    <li><strong>Research Leadership:</strong> Led cutting-edge research projects in Blockchain and AI technologies, resulting in multiple conference publications and innovative solutions</li>
+                    <li><strong>Infrastructure Optimization:</strong> Implemented advanced automation tools and IoT integrations, improving system efficiency by 40% and reducing manual processes</li>
+                    <li><strong>Technology Innovation:</strong> Developed custom frameworks and AI-powered solutions, establishing new standards for university technology infrastructure</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Education</div>
+        <div class="education-item">
+            <div class="job-title">Bachelor of Engineering</div>
+            <div class="company">Gujarat Technological University</div>
+            <div class="duration">August 2022 - May 2025 | CGPA: 8.34/10</div>
+        </div>
+        <div class="education-item">
+            <div class="job-title">Diploma in Engineering</div>
+            <div class="company">Gujarat Technological University</div>
+            <div class="duration">June 2019 - June 2022 | CGPA: 8.6/10</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Featured Projects & Research</div>
+        <div class="projects-grid">
+            <div class="project-category">
+                <div class="project-category-title">🔬 Research Publications</div>
+                <div class="project-item">
+                    <div class="project-title">Ethereum-Based Result Management System</div>
+                    <div class="project-subtitle">ARICEMS 2024 - Harvard Club of Boston, U.S.</div>
+                    <div class="description">Developed innovative blockchain solution with lightweight mining algorithm, reducing power consumption by 60% while maintaining security and immutability for academic records.</div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">Blockchain Court Document Management System</div>
+                    <div class="project-subtitle">International Conference on Sustainable Development - Gateway Institute, Delhi</div>
+                    <div class="description">Engineered decentralized document management using Ethereum and IPFS with smart contract automation, enhancing legal transparency and document integrity.</div>
+                </div>
+            </div>
+
+            <div class="project-category">
+                <div class="project-category-title">💼 Enterprise Applications</div>
+                <div class="project-item">
+                    <div class="project-title">University Management System</div>
+                    <div class="project-subtitle">Production System - erp.gmiu.edu.in</div>
+                    <div class="description">Full-stack ERP solution with single sign-on, integrated fee management, attendance tracking via biometric systems, examination management, and real-time analytics dashboard.</div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">Event Management Platform</div>
+                    <div class="project-subtitle">GMIU Tech Fest 2023 & 2024</div>
+                    <div class="description">Scalable event management system with QR-based invitation system, bulk communication, and real-time attendance tracking serving 2000+ participants.</div>
+                </div>
+            </div>
+
+            <div class="project-category">
+                <div class="project-category-title">🤖 AI/ML Innovation</div>
+                <div class="project-item">
+                    <div class="project-title">AI Generation Suite</div>
+                    <div class="project-subtitle">ComfyUI & CivitAI Integration</div>
+                    <div class="description">Complete local AI ecosystem supporting FLUX, SDXL models with advanced features: image generation, inpainting, upscaling, face swap, and multi-server workflow management.</div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">Advanced AI Content Tools</div>
+                    <div class="project-subtitle">Custom ML Models</div>
+                    <div class="description">Developed AI humanizer bypassing major detection systems (Turnitin, GPTZero) and custom AI detector trained on PAN 25 dataset (360k+ variants) achieving GPTZero-level accuracy.</div>
+                </div>
+            </div>
+
+            <div class="project-category">
+                <div class="project-category-title">⚡ Custom Framework Development</div>
+                <div class="project-item">
+                    <div class="project-title">PHPLite Framework</div>
+                    <div class="project-subtitle">Laravel Alternative with SPA Support</div>
+                    <div class="description">Built lightweight, high-performance PHP framework with Model-View-Routes architecture, supporting Single Page Applications and optimized for rapid development of small-to-medium scale applications.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Key Achievements</div>
+        <div class="description">
+            <ul>
+                <li>🏆 <strong>Research Publications:</strong> Multiple conference presentations at international venues including Harvard Club of Boston</li>
+                <li>🚀 <strong>System Performance:</strong> Designed enterprise systems serving 4000+ concurrent users with 99.9% uptime</li>
+                <li>💡 <strong>Innovation Leadership:</strong> Created custom frameworks and AI solutions adopted across university infrastructure</li>
+                <li>🔧 <strong>Technical Excellence:</strong> Full-stack expertise spanning 15+ programming languages and 20+ technology platforms</li>
+                <li>📊 <strong>Process Optimization:</strong> Implemented automation reducing manual processes by 40% and improving operational efficiency</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
