@@ -33,7 +33,7 @@
             background: var(--background-color);
             color: var(--text-color);
             overflow-x: hidden;
-            cursor: none;
+            /* cursor: none; */
         }
 
         body::-webkit-scrollbar {
@@ -308,7 +308,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            cursor: none;
+            /* cursor: none; */
         }
 
         .btn-primary {
@@ -423,7 +423,7 @@
             font-size: 1.5rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            cursor: none;
+            /* cursor: none; */
         }
 
         .audio-btn:hover {
@@ -485,7 +485,7 @@
             font-size: 2rem;
             color: var(--text-color);
             transition: all 0.3s ease;
-            cursor: none;
+            /* cursor: none; */
         }
 
         .close-projects:hover {
@@ -753,6 +753,7 @@
                             <li><strong>Languages:</strong> JavaScript, Python, PHP, SQL, Bash</li>
                             <li><strong>Frameworks:</strong> Laravel, Django, Flask, WordPress</li>
                             <li><strong>Databases:</strong> MySQL/MariaDB, Redis, SQL</li>
+                            <li><strong>Others:</strong> Gradio, Streamlit, Selenium, PlayWright, Helium, LaVague</li>
                         </ul>
                     </div>
                     <div class="skill-category">
@@ -904,7 +905,7 @@
         function generateStars() {
             const starsContainer = document.querySelector('.stars');
             if (!starsContainer) return;
-            const starCount = 150;
+            const starCount = 300;
 
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
@@ -1008,7 +1009,7 @@
                 audio.pause();
                 if (playIcon) playIcon.className = 'fas fa-play';
             } else {
-                if (!audio.src || !audio.src.includes(tracks[currentTrack])) {
+                if (!audio.src || !audio.src.includes(encodeURI(tracks[currentTrack]))) {
                     audio.src = `${API_BASE_URL}/tracks/${tracks[currentTrack]}`;
                 }
                 audio.play().catch(e => {
