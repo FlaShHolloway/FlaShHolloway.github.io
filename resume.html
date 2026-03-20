@@ -6,403 +6,844 @@
     <title>Jograna Bhumit - Resume</title>
     <link rel="icon"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2300ffff'/%3E%3Cstop offset='100%25' stop-color='%23ff00ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cstyle%3E@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900');%3C/style%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a' stroke='url(%23g)' stroke-width='5'/%3E%3Ctext x='50%25' y='50%25' font-family='Orbitron,sans-serif' font-size='50' font-weight='900' fill='url(%23g)' text-anchor='middle' dy='.35em'%3EJB%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary: #00ffff;
+            --secondary: #ff00ff;
+            --accent: #ffff00;
+            --bg: #0a0a0a;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(0,255,255,0.06);
+            --border: rgba(255,255,255,0.1);
+            --border-accent: rgba(0,255,255,0.4);
+            --text: #ffffff;
+            --text-muted: #a0a0a0;
+            --text-dim: #666;
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            color: #333;
-            background: white;
-            max-width: 8.5in;
-            margin: 0 auto;
-            padding: 0.75in;
+            min-height: 100vh;
         }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            border-bottom: 3px solid #2c3e50;
-            padding-bottom: 1rem;
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(0,255,255,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,0,255,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f1e 100%);
+            z-index: -1;
         }
-        
-        .name {
-            font-size: 2.5rem;
+
+        /* Top nav bar */
+        .topbar {
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topbar-logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .topbar-links { display: flex; gap: 1.5rem; align-items: center; }
+        .topbar-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .topbar-links a:hover { color: var(--primary); }
+
+        .print-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
             font-weight: 700;
-            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .print-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,255,255,0.3); }
+
+        /* Resume wrapper */
+        .resume-wrapper {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        /* Header block */
+        .resume-header {
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,255,255,0.05) 0%, rgba(255,0,255,0.05) 100%);
+        }
+
+        .resume-header-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .resume-name-block h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
         }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
+
+        .resume-role {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 1rem;
         }
-        
+
+        .resume-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
         .contact-item {
-            color: #34495e;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
             font-size: 0.95rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .contact-item:hover { color: var(--primary); }
+        .contact-item i { color: var(--primary); font-size: 0.9rem; }
+
+        .resume-summary {
+            max-width: 480px;
+            color: #c0c0c0;
+            font-size: 1rem;
+            line-height: 1.7;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.3);
+            border-left: 3px solid;
+            border-image: linear-gradient(to bottom, var(--primary), var(--secondary)) 1;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Section styling */
+        .resume-section { margin-bottom: 2rem; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0;
+            width: 60px; height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-header i {
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .skill-box:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-accent);
+            transform: translateY(-3px);
+        }
+
+        .skill-box-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        
-        .section {
-            margin: 1.5rem 0;
-        }
-        
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 0.3rem;
-        }
-        
-        .summary {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #2c3e50;
-            text-align: justify;
-            background: #f8f9fa;
-            padding: 1rem;
-            border-left: 4px solid #3498db;
-            border-radius: 4px;
-        }
-        
-        .experience-item, .education-item, .project-item {
-            margin-bottom: 1.5rem;
-            padding-left: 1rem;
-            border-left: 2px solid #ecf0f1;
-            position: relative;
-        }
-        
-        .experience-item::before, .education-item::before, .project-item::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 0.5rem;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #3498db;
-        }
-        
-        .job-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 0.3rem;
-        }
-        
-        .company {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #3498db;
-            margin-bottom: 0.2rem;
-        }
-        
-        .duration {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            margin-bottom: 0.8rem;
-        }
-        
-        .description {
-            color: #2c3e50;
-            line-height: 1.6;
-        }
-        
-        .description ul {
-            margin-left: 1rem;
-            margin-top: 0.5rem;
-        }
-        
-        .description li {
-            margin-bottom: 0.3rem;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .skill-category {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid #ecf0f1;
-        }
-        
-        .skill-category-title {
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        
+
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
-        
+
         .skill-tag {
-            background: #3498db;
-            color: white;
-            padding: 0.3rem 0.8rem;
+            background: rgba(0,255,255,0.08);
+            border: 1px solid rgba(0,255,255,0.2);
+            color: #d0d0d0;
+            padding: 0.2rem 0.7rem;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 500;
+            transition: all 0.2s;
         }
-        
-        .projects-grid {
-            display: grid;
-            gap: 1rem;
+
+        .skill-tag:hover { background: rgba(0,255,255,0.15); color: var(--primary); }
+
+        /* Experience / Education items */
+        .timeline-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid;
+            border-image: linear-gradient(to bottom, var(--primary), var(--secondary)) 1;
+            border-radius: 0 12px 12px 0;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.25rem;
+            transition: all 0.3s;
         }
-        
-        .project-category {
-            margin-bottom: 1.5rem;
+
+        .timeline-item:hover {
+            background: var(--bg-card-hover);
+            border-right-color: rgba(0,255,255,0.2);
+            transform: translateX(4px);
         }
-        
-        .project-category-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.3rem;
-            border-bottom: 1px solid #bdc3c7;
-        }
-        
-        .project-title {
-            font-weight: 700;
-            color: #2c3e50;
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
             margin-bottom: 0.3rem;
         }
-        
-        .project-subtitle {
-            font-size: 0.9rem;
-            color: #3498db;
+
+        .timeline-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            font-weight: 500;
+            background: rgba(255,255,255,0.05);
+            padding: 0.2rem 0.75rem;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .timeline-company {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-meta {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-bullets { list-style: none; margin-top: 0.75rem; }
+
+        .timeline-bullets li {
+            color: #c0c0c0;
+            font-size: 0.95rem;
+            padding: 0.25rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .timeline-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        /* Projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,255,255,0.1);
+        }
+
+        .project-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.2s;
+        }
+        .project-link:hover { color: var(--secondary); }
+
+        .project-tech {
+            font-size: 0.8rem;
+            color: var(--secondary);
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
-        
-        .highlight {
-            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
-            padding: 0.1rem 0.3rem;
-            border-radius: 3px;
+
+        .project-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            flex-grow: 1;
         }
-        
+
+        /* Research cards */
+        .research-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .research-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+
+        .research-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+        .research-venue { font-size: 0.85rem; color: var(--primary); font-weight: 600; }
+
+        .research-link {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        .research-link:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(0,255,255,0.3); }
+
+        /* Achievements */
+        .achievements-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .achievement-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .achievement-item:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+
+        .achievement-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .achievement-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .achievement-text strong { color: var(--text); display: block; margin-bottom: 0.2rem; }
+
+        /* Print styles */
         @media print {
-            body {
-                padding: 0.5in;
-                max-width: none;
-            }
-            .section {
-                break-inside: avoid;
-            }
+            body { background: white; color: #111; }
+            body::before { display: none; }
+            .topbar { display: none; }
+            .resume-wrapper { max-width: 100%; margin: 0; padding: 1rem; }
+            .resume-header { border-color: #ccc; background: #f9f9f9; }
+            .resume-header::before { display: none; }
+            .resume-name-block h1 { -webkit-text-fill-color: #111; background: none; color: #111; }
+            .section-header h2, .section-header i { -webkit-text-fill-color: #1a5276; background: none; color: #1a5276; }
+            .skill-tag { background: #eee; border-color: #ccc; color: #333; }
+            .timeline-item { border-image: none; border-left-color: #3498db; background: #f9f9f9; }
+            .project-card, .research-card, .achievement-item, .skill-box { background: #f9f9f9; border-color: #ddd; }
+            .resume-summary { background: #f0f8ff; border-left-color: #3498db; border-image: none; color: #333; }
+            .timeline-company, .contact-item i, .project-link { color: #1a5276; }
+            .print-btn { display: none; }
+        }
+
+        @media (max-width: 680px) {
+            .resume-header-inner { flex-direction: column; }
+            .resume-summary { max-width: 100%; }
+            .topbar-links a:not(.print-btn-wrap a) { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="name">JOGRANA BHUMIT</div>
-        <div class="contact-info">
-            <div class="contact-item">📧 jograna.bhumit@gmail.com</div>
-            <div class="contact-item">💼 linkedin.com/in/jograna-bhumit</div>
-            <div class="contact-item">🌐 https://flashholloway.github.io/</div>
+
+    <!-- Top navigation bar -->
+    <div class="topbar">
+        <div class="topbar-logo">JOGRANA BHUMIT</div>
+        <div class="topbar-links">
+            <a href="index.html"><i class="fas fa-home"></i> Portfolio</a>
+            <a href="https://github.com/FlaShHolloway" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://linkedin.com/in/jograna-bhumit" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
         </div>
     </div>
 
-    <div class="section">
-        <div class="section-title">Professional Summary</div>
-        <div class="summary">
-            <span class="highlight">Innovative Full-Stack Developer</span> with extensive expertise in modern web technologies, AI/ML implementations, and cloud infrastructure. Proven track record in <span class="highlight">scalable system architecture</span>, automation, and DevOps practices. Experienced in leading research projects and delivering enterprise-level solutions across blockchain, artificial intelligence, and cybersecurity domains. Strong background in <span class="highlight">end-to-end product development</span> from conception to deployment with focus on performance optimization and user experience.
-        </div>
-    </div>
+    <div class="resume-wrapper">
 
-    <div class="section">
-        <div class="section-title">Technical Expertise</div>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <div class="skill-category-title">🚀 Programming & Frameworks</div>
-                <div class="skill-tags">
-                    <span class="skill-tag">JavaScript (ES6+)</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">Laravel</span>
-                    <span class="skill-tag">Django</span>
-                    <span class="skill-tag">Flask</span>
-                    <span class="skill-tag">WordPress</span>
-                    <span class="skill-tag">Fast API</span>
-                    <span class="skill-tag">Selenium</span>
-                    <span class="skill-tag">PlayWright</span>
-                    <span class="skill-tag">Helium</span>
-                    <span class="skill-tag">LaVague</span>
+        <!-- Header -->
+        <div class="resume-header">
+            <div class="resume-header-inner">
+                <div class="resume-name-block">
+                    <h1>JOGRANA BHUMIT</h1>
+                    <p class="resume-role">Full-Stack Developer · AI/ML Engineer · DevOps</p>
+                    <div class="resume-contact">
+                        <a href="mailto:jograna.bhumit@gmail.com" class="contact-item">
+                            <i class="fas fa-envelope"></i> jograna.bhumit@gmail.com
+                        </a>
+                        <a href="https://linkedin.com/in/jograna-bhumit" target="_blank" class="contact-item">
+                            <i class="fab fa-linkedin"></i> linkedin.com/in/jograna-bhumit
+                        </a>
+                        <a href="https://flashholloway.github.io" target="_blank" class="contact-item">
+                            <i class="fas fa-globe"></i> flashholloway.github.io
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-category-title">☁️ Cloud & DevOps</div>
-                <div class="skill-tags">
-                    <span class="skill-tag">AWS</span>
-                    <span class="skill-tag">GCP</span>
-                    <span class="skill-tag">Linode</span>
-                    <span class="skill-tag">Digital Ocean</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">Podman</span>
-                    <span class="skill-tag">Kubernetes</span>
-                    <span class="skill-tag">CI/CD</span>
-                    <span class="skill-tag">Git/GitLab</span>
-                    <span class="skill-tag">Redis</span>
-                    <span class="skill-tag">Linux Administration</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-category-title">🤖 AI/ML & Data Science</div>
-                <div class="skill-tags">
-                    <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">Deep Learning</span>
-                    <span class="skill-tag">LLM Integration</span>
-                    <span class="skill-tag">ComfyUI</span>
-                    <span class="skill-tag">n8n</span>
-                    <span class="skill-tag">OpenHands</span>
-                    <span class="skill-tag">Agentic Tools</span>
-                    <span class="skill-tag">Gradio</span>
-                    <span class="skill-tag">Streamlit</span>
-                    <span class="skill-tag">Model Training</span>
-                    <span class="skill-tag">Data Pipeline</span>
-                    <span class="skill-tag">Research & Publication</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <div class="skill-category-title">🔒 Database & Security</div>
-                <div class="skill-tags">
-                    <span class="skill-tag">MySQL/MariaDB</span>
-                    <span class="skill-tag">SQL Optimization</span>
-                    <span class="skill-tag">Blockchain</span>
-                    <span class="skill-tag">Smart Contracts</span>
-                    <span class="skill-tag">Security Hardening</span>
-                    <span class="skill-tag">Server Administration</span>
+                <div class="resume-summary">
+                    Full-Stack Developer with 2+ years of experience building scalable web systems, AI/ML pipelines, and DevOps infrastructure. Proven track record delivering enterprise ERP systems, published blockchain research, and production-grade self-hosted tools. Strong expertise across the full development lifecycle — from architecture to deployment.
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <div class="section-title">Professional Experience</div>
-        <div class="experience-item">
-            <div class="job-title">Research & Development Engineer | IT Infrastructure Lead</div>
-            <div class="company">Gyanmanjari Innovative University</div>
-            <div class="duration">February 2023 - May 2025 | 2+ Years</div>
-            <div class="description">
-                <ul>
-                    <li><strong>Enterprise System Architecture:</strong> Designed and deployed comprehensive College Management System serving 4000+ users daily, streamlining operations for faculty, staff, and students</li>
-                    <li><strong>Research Leadership:</strong> Led cutting-edge research projects in Blockchain and AI technologies, resulting in multiple conference publications and innovative solutions</li>
-                    <li><strong>Infrastructure Optimization:</strong> Implemented advanced automation tools and IoT integrations, improving system efficiency by 40% and reducing manual processes</li>
-                    <li><strong>Technology Innovation:</strong> Developed custom frameworks and AI-powered solutions, establishing new standards for university technology infrastructure</li>
+        <!-- Technical Skills -->
+        <div class="resume-section">
+            <div class="section-header">
+                <i class="fas fa-microchip"></i>
+                <h2>Technical Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-box">
+                    <div class="skill-box-title"><i class="fas fa-code"></i> Languages & Frameworks</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JavaScript (ES6+)</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Laravel</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">WordPress</span>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-box-title"><i class="fas fa-cloud"></i> Cloud & DevOps</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">DigitalOcean</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Linux Admin</span>
+                        <span class="skill-tag">Git/GitLab</span>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-box-title"><i class="fas fa-brain"></i> AI/ML</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">LLM Integration</span>
+                        <span class="skill-tag">ComfyUI</span>
+                        <span class="skill-tag">n8n</span>
+                        <span class="skill-tag">Agentic Tools</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Gradio</span>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-box-title"><i class="fas fa-database"></i> Databases & Security</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL/MariaDB</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">S3</span>
+                        <span class="skill-tag">Blockchain</span>
+                        <span class="skill-tag">Security Hardening</span>
+                        <span class="skill-tag">CompTIA Sec+</span>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-box-title"><i class="fas fa-mobile-alt"></i> Mobile & Tools</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">FFmpeg</span>
+                        <span class="skill-tag">libtorrent</span>
+                        <span class="skill-tag">Selenium</span>
+                        <span class="skill-tag">PlayWright</span>
+                        <span class="skill-tag">NTFY</span>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-box-title"><i class="fas fa-wrench"></i> Automation & Other</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">IoT Integration</span>
+                        <span class="skill-tag">Telegram Bots</span>
+                        <span class="skill-tag">Web Scraping</span>
+                        <span class="skill-tag">IPFS</span>
+                        <span class="skill-tag">Smart Contracts</span>
+                        <span class="skill-tag">GrayLog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="resume-section">
+            <div class="section-header">
+                <i class="fas fa-briefcase"></i>
+                <h2>Professional Experience</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div class="timeline-title">Research & Development Engineer · IT Infrastructure Lead</div>
+                    <span class="timeline-date">Feb 2023 – May 2025</span>
+                </div>
+                <div class="timeline-company">Gyanmanjari Innovative University</div>
+                <ul class="timeline-bullets">
+                    <li>Architected and deployed a full-stack College Management ERP serving 4000+ students and 250+ faculty with single-login, fee management, biometric attendance, and exam modules</li>
+                    <li>Led blockchain and AI research resulting in 2 publications at international conferences (Harvard Club of Boston; Delhi-NCR)</li>
+                    <li>Improved system efficiency by 70% through automation tools, optimized ISO workflows, and IoT integrations (eSSL biometric)</li>
+                    <li>Managed AWS/cloud server infrastructure, security hardening, and CI/CD pipelines for university-wide production systems</li>
+                    <li>Built custom AI tools — detection models, image generation pipelines, and LLM integrations — deployed across university workflows</li>
                 </ul>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <div class="section-title">Education</div>
-        <div class="education-item">
-            <div class="job-title">Bachelor of Engineering</div>
-            <div class="company">Gujarat Technological University</div>
-            <div class="duration">August 2022 - May 2025 | CGPA: 8.34/10</div>
-        </div>
-        <div class="education-item">
-            <div class="job-title">Diploma in Engineering</div>
-            <div class="company">Gujarat Technological University</div>
-            <div class="duration">June 2019 - June 2022 | CGPA: 8.6/10</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Featured Projects & Research</div>
-        <div class="projects-grid">
-            <div class="project-category">
-                <div class="project-category-title">🔬 Research Publications</div>
-                <div class="project-item">
-                    <div class="project-title">Ethereum-Based Result Management System</div>
-                    <div class="project-subtitle">ARICEMS 2024 - Harvard Club of Boston, U.S.</div>
-                    <div class="description">Developed innovative blockchain solution with lightweight mining algorithm, reducing power consumption by 60% while maintaining security and immutability for academic records.</div>
-                </div>
-                <div class="project-item">
-                    <div class="project-title">Blockchain Court Document Management System</div>
-                    <div class="project-subtitle">International Conference on Sustainable Development - Gateway Institute, Delhi</div>
-                    <div class="description">Engineered decentralized document management using Ethereum and IPFS with smart contract automation, enhancing legal transparency and document integrity.</div>
-                </div>
+        <!-- Education -->
+        <div class="resume-section">
+            <div class="section-header">
+                <i class="fas fa-graduation-cap"></i>
+                <h2>Education</h2>
             </div>
 
-            <div class="project-category">
-                <div class="project-category-title">💼 Enterprise Applications</div>
-                <div class="project-item">
-                    <div class="project-title">University Management System</div>
-                    <div class="project-subtitle">Production System - erp.gmiu.edu.in</div>
-                    <div class="description">Full-stack ERP solution with single sign-on, integrated fee management, attendance tracking via biometric systems, examination management, and real-time analytics dashboard.</div>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div class="timeline-title">Bachelor of Engineering (Computer/IT)</div>
+                    <span class="timeline-date">Aug 2022 – May 2025</span>
                 </div>
-                <div class="project-item">
-                    <div class="project-title">Event Management Platform</div>
-                    <div class="project-subtitle">GMIU Tech Fest 2023 & 2024</div>
-                    <div class="description">Scalable event management system with QR-based invitation system, bulk communication, and real-time attendance tracking serving 2000+ participants.</div>
-                </div>
+                <div class="timeline-company">Gujarat Technological University</div>
+                <div class="timeline-meta">CGPA: 8.34 / 10</div>
             </div>
 
-            <div class="project-category">
-                <div class="project-category-title">🤖 AI/ML Innovation</div>
-                <div class="project-item">
-                    <div class="project-title">AI Generation Suite</div>
-                    <div class="project-subtitle">ComfyUI & CivitAI Integration</div>
-                    <div class="description">Complete local AI ecosystem supporting FLUX, SDXL models with advanced features: image generation, inpainting, upscaling, face swap, and multi-server workflow management.</div>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div class="timeline-title">Diploma in Engineering</div>
+                    <span class="timeline-date">Jun 2019 – Jun 2022</span>
                 </div>
-                <div class="project-item">
-                    <div class="project-title">Advanced AI Content Tools</div>
-                    <div class="project-subtitle">Custom ML Models</div>
-                    <div class="description">Developed AI humanizer bypassing major detection systems (Turnitin, GPTZero) and custom AI detector trained on PAN 25 dataset (360k+ variants) achieving GPTZero-level accuracy.</div>
+                <div class="timeline-company">Gujarat Technological University</div>
+                <div class="timeline-meta">CGPA: 8.75 / 10</div>
+            </div>
+        </div>
+
+        <!-- Featured Projects -->
+        <div class="resume-section">
+            <div class="section-header">
+                <i class="fas fa-code"></i>
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-name">WatchList</div>
+                        <span style="color: var(--text-dim); font-size:0.8rem;">Private</span>
+                    </div>
+                    <div class="project-tech">Python · Flask · libtorrent · FFmpeg · Flutter</div>
+                    <p class="project-desc">Self-hosted media watchlist with in-browser streaming, TMDB integration, torrent search, episode tracking, and push notifications. Available as Web App, Android App, and TV App (Flutter).</p>
                 </div>
-                <div class="project-item">
-                    <div class="project-title">SQLMind</div>
-                    <div class="project-subtitle">AI Powered Database Retriever</div>
-                    <div class="description">Developed AI powered database retriever that can retrieve data using natural language. This tool can be integrated as Agentic Tool for any LLM model that supports agentic tools.</div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-name">Vaultarr</div>
+                        <span style="color: var(--text-dim); font-size:0.8rem;">Private</span>
+                    </div>
+                    <div class="project-tech">Python · Flask · HTMX · Google Drive API</div>
+                    <p class="project-desc">Unified self-hosted backup system with Web UI and full CLI. Backs up files, GitHub repos, and YouTube Music playlists. Hash-based change detection, scheduling, NTFY alerts, and multi-instance sync.</p>
                 </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-name">AI Agent Tools</div>
+                        <span style="color: var(--text-dim); font-size:0.8rem;">Private</span>
+                    </div>
+                    <div class="project-tech">Python · JavaScript · Tampermonkey · Docker</div>
+                    <p class="project-desc">Universal agentic coding toolkit for Claude, ChatGPT, and Arena. Auto Mode executes AI-generated file operations, patches, and shell commands. Context memory persists project state across sessions.</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-name">University ERP System</div>
+                        <a href="https://erp.gmiu.edu.in" target="_blank" class="project-link">Live <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="project-tech">Laravel · MySQL · AWS (S3 + SES + EC2)</div>
+                    <p class="project-desc">Full-stack ERP serving 4000+ daily users. Single-login platform with fee management, biometric attendance, exam management, timetables, and real-time analytics.</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-name">AI-Powered Tools Suite</div>
+                        <span style="color: var(--text-dim); font-size:0.8rem;">Private</span>
+                    </div>
+                    <div class="project-tech">Python · Ollama · Gemini API · Vector DB</div>
+                    <p class="project-desc">AI Detector/Paraphraser (GPTZero-level accuracy), SQLMind (natural language to SQL, LLM-tool ready), AI FAQ Chatbot with vector database, and Bird Species Classifier (95% accuracy with EfficientNet).</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-name">Log Sentinel</div>
+                        <span style="color: var(--text-dim); font-size:0.8rem;">Private</span>
+                    </div>
+                    <div class="project-tech">Python · systemd · NTFY · YAML</div>
+                    <p class="project-desc">Config-driven daemon monitoring SSH, Fail2ban, Nginx, Postfix, and PAM logs for threats. Fixed-window deduplication, rotation-aware, persistent state, and real-time push alerts.</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-name">AI Generation Suite</div>
+                        <span style="color: var(--text-dim); font-size:0.8rem;">Private</span>
+                    </div>
+                    <div class="project-tech">ComfyUI · Python · CivitAI · FLUX/SDXL</div>
+                    <p class="project-desc">Complete local AI image ecosystem: generation, inpainting, upscaling, face swap, LoRA training, and multi-server workflow management with a custom GUI.</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-name">PHPLite Framework</div>
+                        <span style="color: var(--text-dim); font-size:0.8rem;">Private</span>
+                    </div>
+                    <div class="project-tech">PHP · JavaScript · MVC/MVR</div>
+                    <p class="project-desc">Lightweight PHP framework with Model-View-Routes architecture and SPA support. Powers transport, logistics, and policy management platforms in production. 40% faster dev cycles than Laravel for small projects.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Research -->
+        <div class="resume-section">
+            <div class="section-header">
+                <i class="fas fa-flask"></i>
+                <h2>Research Publications</h2>
             </div>
 
-            <div class="project-category">
-                <div class="project-category-title">⚡ Custom Framework Development</div>
-                <div class="project-item">
-                    <div class="project-title">PHPLite Framework</div>
-                    <div class="project-subtitle">Laravel Alternative with SPA Support</div>
-                    <div class="description">Built lightweight, high-performance PHP framework with Model-View-Routes architecture, supporting Single Page Applications and optimized for rapid development of small-to-medium scale applications.</div>
+            <div class="research-card">
+                <div>
+                    <h3>Ethereum-Based Result Management System</h3>
+                    <div class="research-venue">ARICEMS 2024 · Harvard Club of Boston, U.S.</div>
+                    <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.3rem;">Lightweight mining algorithm reducing power consumption by 60% while maintaining immutability for academic records.</p>
+                </div>
+                <a href="https://londoninstitutesd.co.uk/wp-content/uploads/2025/05/02-ARICON-Aug-2024-Boston-US.pdf" target="_blank" class="research-link">View Paper <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="research-card">
+                <div>
+                    <h3>Blockchain Court Document Management System</h3>
+                    <div class="research-venue">Int'l Conference on Sustainable Development · Gateway Institute, Delhi-NCR</div>
+                    <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.3rem;">Decentralized document management using Ethereum and IPFS with smart contract automation for legal transparency.</p>
+                </div>
+                <span style="color:var(--text-dim);font-size:0.85rem;">Published</span>
+            </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="resume-section">
+            <div class="section-header">
+                <i class="fas fa-trophy"></i>
+                <h2>Achievements</h2>
+            </div>
+            <div class="achievements-list">
+                <div class="achievement-item">
+                    <span class="achievement-icon">🏆</span>
+                    <div class="achievement-text">
+                        <strong>Technical Excellence Award</strong>
+                        Gyanmanjari Innovative University
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <span class="achievement-icon">🔒</span>
+                    <div class="achievement-text">
+                        <strong>CompTIA Security+ Certified</strong>
+                        Industry-recognized cybersecurity certification
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <span class="achievement-icon">📄</span>
+                    <div class="achievement-text">
+                        <strong>2 International Publications</strong>
+                        Research presented at Harvard Club of Boston & Delhi-NCR
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <span class="achievement-icon">🚀</span>
+                    <div class="achievement-text">
+                        <strong>15+ Production Projects</strong>
+                        Enterprise ERP, AI tools, self-hosted apps, mobile apps
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <span class="achievement-icon">⚡</span>
+                    <div class="achievement-text">
+                        <strong>70% Efficiency Improvement</strong>
+                        University-wide infrastructure automation & optimization
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <span class="achievement-icon">📱</span>
+                    <div class="achievement-text">
+                        <strong>Multi-Platform Development</strong>
+                        Web, Android, TV apps with Flutter + backend
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
-    <div class="section">
-        <div class="section-title">Key Achievements</div>
-        <div class="description">
-            <ul>
-                <li>🏆 <strong>Research Publications:</strong> Multiple conference presentations at international venues including Harvard Club of Boston</li>
-                <li>🚀 <strong>System Performance:</strong> Designed enterprise systems serving 4000+ concurrent users with 99.9% uptime</li>
-                <li>💡 <strong>Innovation Leadership:</strong> Created custom frameworks and AI solutions adopted across university infrastructure</li>
-                <li>🔧 <strong>Technical Excellence:</strong> Full-stack expertise spanning 15+ programming languages and 20+ technology platforms</li>
-                <li>📊 <strong>Process Optimization:</strong> Implemented automation reducing manual processes by 40% and improving operational efficiency</li>
-            </ul>
-        </div>
-    </div>
 </body>
 </html>
