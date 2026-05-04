@@ -3,1165 +3,607 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jograna Bhumit - Portfolio</title>
-    <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2300ffff'/%3E%3Cstop offset='100%25' stop-color='%23ff00ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cstyle%3E@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900');%3C/style%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a' stroke='url(%23g)' stroke-width='5'/%3E%3Ctext x='50%25' y='50%25' font-family='Orbitron,sans-serif' font-size='50' font-weight='900' fill='url(%23g)' text-anchor='middle' dy='.35em'%3EJB%3C/text%3E%3C/svg%3E">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #00ffff;
-            --secondary-color: #ff00ff;
-            --background-color: #0a0a0a;
-            --text-color: #ffffff;
-            --container-bg: rgba(255, 255, 255, 0.05);
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background: var(--background-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        body::-webkit-scrollbar { width: 8px; }
-        body::-webkit-scrollbar-track { background: #000; }
-        body::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border-radius: 4px;
-        }
-
-        /* Nebula Background */
-        .nebula-container {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 35%, #0f0f23 100%);
-        }
-
-        .stars { position: absolute; width: 100%; height: 100%; }
-
-        .star {
-            position: absolute;
-            background: var(--text-color);
-            border-radius: 50%;
-            animation: twinkle 3s infinite ease-in-out;
-        }
-        .star:nth-child(odd) { animation-delay: 1s; }
-        .star:nth-child(3n) { animation-delay: 2s; }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        .nebula-glow {
-            position: absolute;
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, rgba(75, 0, 130, 0.2) 40%, transparent 70%);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-        }
-        .nebula-glow:nth-child(2) {
-            top: 20%; left: 80%;
-            animation-delay: -2s;
-            background: radial-gradient(circle, rgba(0, 191, 255, 0.3) 0%, rgba(30, 144, 255, 0.2) 40%, transparent 70%);
-        }
-        .nebula-glow:nth-child(3) {
-            top: 60%; left: 10%;
-            animation-delay: -4s;
-            background: radial-gradient(circle, rgba(255, 20, 147, 0.3) 0%, rgba(199, 21, 133, 0.2) 40%, transparent 70%);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(120deg); }
-            66% { transform: translateY(20px) rotate(240deg); }
-        }
-
-        /* Custom Cursor */
-        .cursor {
-            position: fixed;
-            width: 20px; height: 20px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.1s ease;
-        }
-        .cursor.clicked { transform: scale(1.5); }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 2rem;
-        }
-
-        .nav { display: flex; justify-content: space-between; align-items: center; }
-
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 0; height: 2px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-
-        /* Sections */
-        .section {
-            padding: 6rem 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 2rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-transform: uppercase;
-        }
-
-        /* Hero */
-        .hero { text-align: center; position: relative; }
-        .hero-content { max-width: 800px; z-index: 1; }
-
-        .hero-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), #ffff00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
-            to { text-shadow: 0 0 30px rgba(255, 0, 255, 0.8); }
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            margin-bottom: 2rem;
-            color: #b0b0b0;
-            font-weight: 300;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 3rem;
-            color: #d0d0d0;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Buttons */
-        .action-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: #000;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-color);
-            border: 2px solid var(--text-color);
-        }
-
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3); }
-        .btn-secondary:hover { background: var(--text-color); color: #000; }
-
-        /* About */
-        #about { background: rgba(0, 0, 0, 0.3); }
-
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            max-width: 1200px;
-            width: 100%;
-            text-align: left;
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #d0d0d0;
-            max-width: 800px;
-            margin: 0 auto 2rem auto;
-            text-align: center;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .skill-category {
-            background: var(--container-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.15);
-            border-color: var(--primary-color);
-        }
-
-        .skill-category h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .skill-category ul { list-style: none; }
-        .skill-category li { color: #c0c0c0; margin-bottom: 0.75rem; font-size: 1rem; }
-
-        /* Audio Controls */
-        .audio-controls {
-            position: fixed;
-            top: 50%; left: 2rem;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 1000;
-        }
-
-        .audio-btn {
-            width: 60px; height: 60px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-        }
-
-        .audio-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary-color);
-            transform: scale(1.1);
-        }
-
-        /* Projects Modal */
-        .projects-section {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            display: none;
-            overflow-y: auto;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .projects-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 8rem 2rem 2rem;
-        }
-
-        .projects-header { text-align: center; margin-bottom: 4rem; }
-
-        .projects-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .close-projects {
-            position: absolute;
-            top: 2rem; right: 2rem;
-            font-size: 2rem;
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .close-projects:hover { color: var(--secondary-color); transform: rotate(90deg); }
-
-        /* Project filter tabs */
-        .project-filters {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            background: var(--container-bg);
-            color: #b0b0b0;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: #000;
-            border-color: transparent;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--container-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
-            border-color: var(--primary-color);
-        }
-
-        .project-card[data-hidden="true"] { display: none; }
-
-        .project-icon { font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color); }
-
-        .project-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-color); }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-tag {
-            padding: 0.2rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .tag-web { background: rgba(0,255,255,0.15); color: var(--primary-color); border: 1px solid rgba(0,255,255,0.3); }
-        .tag-ai { background: rgba(255,0,255,0.15); color: var(--secondary-color); border: 1px solid rgba(255,0,255,0.3); }
-        .tag-devops { background: rgba(255,255,0,0.15); color: #ffff00; border: 1px solid rgba(255,255,0,0.3); }
-        .tag-research { background: rgba(0,255,128,0.15); color: #00ff80; border: 1px solid rgba(0,255,128,0.3); }
-        .tag-mobile { background: rgba(255,128,0,0.15); color: #ff8000; border: 1px solid rgba(255,128,0,0.3); }
-        .tag-security { background: rgba(255,64,64,0.15); color: #ff4040; border: 1px solid rgba(255,64,64,0.3); }
-
-        .project-description {
-            color: #b0b0b0;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-            font-size: 0.95rem;
-        }
-
-        .project-links { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .project-link:hover { color: var(--secondary-color); }
-
-        .project-link.private { color: #666; cursor: default; }
-
-        /* Footer */
-        #contact {
-            background: #050505;
-            padding: 4rem 2rem;
-            min-height: auto;
-        }
-
-        .footer-content { max-width: 1000px; margin: 0 auto; }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .contact-link {
-            color: #c0c0c0;
-            text-decoration: none;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .contact-link:hover { color: var(--primary-color); }
-
-        .footer-bottom {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: #666;
-            border-top: 1px solid var(--border-color);
-            padding-top: 2rem;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            top: 20%; left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            color: var(--text-color);
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            border: 1px solid var(--primary-color);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 3000;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            backdrop-filter: blur(10px);
-            pointer-events: none;
-        }
-        .toast.show { opacity: 1; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-
-            .audio-controls {
-                left: 1rem;
-                flex-direction: row;
-                top: auto; bottom: 1rem;
-                transform: none;
-                width: calc(100% - 2rem);
-                justify-content: center;
-            }
-
-            .audio-btn { width: 50px; height: 50px; font-size: 1.2rem; }
-
-            .action-buttons { flex-direction: column; align-items: center; }
-
-            .projects-grid { grid-template-columns: 1fr; }
-
-            .section { padding: 4rem 1rem; }
-
-            .section-title { font-size: 2.5rem; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in-up { animation: fadeInUp 0.8s ease-out; animation-fill-mode: both; }
-
-        .text-center { text-align: center; }
-    </style>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Bhumit Jograna - Developer &amp; AI Engineer</title>
+    <meta name="description"
+        content="Portfolio of Bhumit Jograna -- Full-Stack Developer, AI/ML Engineer, and DevOps practitioner.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="cursor"></div>
 
-    <div class="nebula-container">
-        <div class="stars"></div>
-        <div class="nebula-glow"></div>
-        <div class="nebula-glow"></div>
-        <div class="nebula-glow"></div>
-    </div>
-
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">JOGRANA BHUMIT</div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
+    <!-- NAV -->
+    <nav class="topbar">
+        <div class="wrap topbar-inner">
+            <a href="#home" class="logo">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="var(--accent)" />
+                    <path
+                        d="M11 9h7.5c2.5 0 4.5 1.8 4.5 4s-2 4-4.5 4H11V9zm0 8h8.5c2.5 0 4.5 1.8 4.5 4s-2 4-4.5 4H11v-8z"
+                        fill="white" />
+                    <rect x="11" y="9" width="3" height="14" fill="white" opacity="0.3" />
+                </svg>
+            </a>
+            <ul class="nav-list">
                 <li><a href="#about">About</a></li>
-                <li><a href="#" onclick="toggleProjects(event)">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
-    </header>
 
-    <main>
-        <!-- Hero -->
-        <section id="home" class="hero section">
-            <div class="hero-content fade-in-up">
-                <h1 class="hero-title">JOGRANA BHUMIT</h1>
-                <p class="hero-subtitle">Full Stack Developer & Creative Technologist</p>
-                <p class="hero-description">
-                    Versatile Full-Stack Developer crafting digital experiences that blend innovation with artistry —
-                    specializing in web development, AI/ML integration, automation, and DevOps.
-                </p>
-                <div class="action-buttons">
-                    <a href="https://github.com/FlaShHolloway" target="_blank" class="btn btn-primary">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    <a href="resume.html" target="_blank" class="btn btn-secondary">
-                        <i class="fas fa-file-pdf"></i> Resume
-                    </a>
-                    <button class="btn btn-secondary" onclick="toggleProjects(event)">
-                        <i class="fas fa-code"></i> Projects
-                    </button>
+            <button class="ham" id="ham" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="mob-menu" id="mob">
+            <a href="#about" onclick="closeMob()">About</a>
+            <a href="#skills" onclick="closeMob()">Skills</a>
+            <a href="#projects" onclick="closeMob()">Projects</a>
+            <a href="#experience" onclick="closeMob()">Experience</a>
+            <a href="#contact" onclick="closeMob()">Contact</a>
+            <a href="#" onclick="generateResume();closeMob();">Download Resume</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home">
+        <div class="wrap">
+            <div class="hero-box">
+                <p class="hero-tag rv">Hunt for the new never ends!</p>
+                <h1 class="hero-name rv rv-1">Bhumit Jograna</h1>
+                <p class="hero-role rv rv-2">Full-Stack Developer &middot; AI/ML Engineer &middot; DevOps</p>
+                <p class="hero-text rv rv-3">I build things that work in production &mdash; agentic AI pipelines,
+                    self-hosted systems, enterprise platforms, and everything in between. From constraint-enforced LLM
+                    tooling to university-scale ERPs to multi-platform media apps, I ship across the full stack.</p>
+                <div class="hero-btns rv rv-4">
+                    <a href="#projects" class="btn-fill"><i class="fas fa-layer-group"></i> View Projects</a>
+                    <a href="https://github.com/FlaShHolloway" target="_blank" class="btn-ghost"><i
+                            class="fab fa-github"></i> GitHub</a>
+                    <button class="btn-ghost" onclick="generateResume()"><i class="fas fa-file-arrow-down"></i> Download
+                        Resume</button>
                 </div>
+                <div class="scroll-hint rv rv-4"><span></span> Scroll to explore</div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- About -->
-        <section id="about" class="section">
-            <div class="about-container">
-                <div class="about-content fade-in-up">
-                    <h2 class="section-title text-center">About Me</h2>
-                    <p>
-                        With a foundation in both front-end and back-end development, I thrive on designing scalable
-                        solutions, troubleshooting complex issues, and conducting research to drive innovation. My
-                        experience spans from building comprehensive management systems for universities to leading
-                        research in Blockchain and AI. Passionate about enhancing infrastructure through automation
-                        and exploring the frontiers of technology — from self-hosted tools and AI pipelines to
-                        mobile apps and security systems.
-                    </p>
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="wrap">
+            <p class="sec-tag rv">About</p>
+            <h2 class="sec-h rv rv-1">Who I am <em>&amp; what I build</em></h2>
+            <div class="about-row">
+                <div class="about-prose rv rv-2">
+                    <p>With a foundation spanning full-stack web development, AI/ML engineering, and infrastructure
+                        management, I focus on building tools that solve real problems without unnecessary complexity.
+                        My work began at Gyanmanjari Innovative University, where I architected a university-wide ERP
+                        serving 4000+ daily users, led blockchain research presented at Harvard, and deployed custom AI
+                        systems across the institution &mdash; all while managing the production infrastructure they ran
+                        on.</p>
+                    <p>My recent work leans toward AI tooling: libraries that give LLMs structured, safe access to
+                        databases (SQLPilot), knowledge base systems that eliminate hallucination (Basalt), and agentic
+                        workflow builders for ComfyUI (Comfy Architect). I build these because I use them, and I keep
+                        building because there is always a better way to make something work.</p>
+                    <p>Outside of AI tooling I maintain a portfolio of self-hosted systems &mdash; a media streaming
+                        platform with torrent, transcoding, and Flutter apps; a unified backup system with Google Drive
+                        sync; and a security daemon watching production logs. I think in systems and I ship in
+                        production.</p>
                 </div>
-
-                <div class="skills-grid fade-in-up">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-laptop-code"></i> Web & Software</h3>
-                        <ul>
-                            <li><strong>Languages:</strong> JavaScript, Python, PHP, SQL, Bash</li>
-                            <li><strong>Frameworks:</strong> Laravel, Django, Flask, FastAPI, WordPress</li>
-                            <li><strong>Databases:</strong> MySQL/MariaDB, Redis, S3</li>
-                            <li><strong>Automation:</strong> Selenium, PlayWright, Helium, LaVague</li>
-                            <li><strong>UI/API:</strong> Gradio, Streamlit, REST APIs</li>
-                        </ul>
+                <div class="stats rv rv-3">
+                    <div class="stat">
+                        <div class="stat-n">2+</div>
+                        <div class="stat-l">Years in Production</div>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-server"></i> DevOps & Cloud</h3>
-                        <ul>
-                            <li><strong>Cloud:</strong> AWS, GCP, Linode, DigitalOcean, Oracle Cloud</li>
-                            <li><strong>Containers:</strong> Docker, Podman, Kubernetes</li>
-                            <li><strong>CI/CD:</strong> Git, GitHub Actions, GitLab CI</li>
-                            <li><strong>Skills:</strong> Server Administration, Automation, SSO</li>
-                        </ul>
+                    <div class="stat">
+                        <div class="stat-n">19</div>
+                        <div class="stat-l">Projects Built</div>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-brain"></i> AI/ML & Research</h3>
-                        <ul>
-                            <li><strong>Generative AI:</strong> ComfyUI, n8n, LoRA Training, LLM Testing</li>
-                            <li><strong>Development:</strong> AI/ML Models, Agentic Tools, Pipelines</li>
-                            <li><strong>Frameworks:</strong> TensorFlow, OpenHands, Ollama, Gemini API</li>
-                            <li><strong>Research:</strong> Algorithm Optimization, Paper Writing</li>
-                        </ul>
+                    <div class="stat">
+                        <div class="stat-n">2</div>
+                        <div class="stat-l">International Publications</div>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-shield"></i> Cybersecurity & Systems</h3>
-                        <ul>
-                            <li><strong>Defense:</strong> Defensive Tools, Threat Alert Systems, GrayLog</li>
-                            <li><strong>Infrastructure:</strong> IoT Integrations, System Hardening</li>
-                            <li><strong>OS:</strong> Linux (All Distros), Windows & Server</li>
-                            <li><strong>Cert:</strong> CompTIA Security+</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-mobile-alt"></i> Mobile & Self-Hosted</h3>
-                        <ul>
-                            <li><strong>Mobile:</strong> Flutter (Android & TV apps)</li>
-                            <li><strong>Self-Hosted:</strong> Full-stack web apps, CLI tools</li>
-                            <li><strong>Streaming:</strong> libtorrent, FFmpeg, WebVTT, fMP4</li>
-                            <li><strong>Notifications:</strong> NTFY, push pipelines</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-flask"></i> Other Skills</h3>
-                        <ul>
-                            <li><strong>Blockchain:</strong> Ethereum, Smart Contracts, IPFS</li>
-                            <li><strong>Web Scraping:</strong> Large-scale scraping & data pipelines</li>
-                            <li><strong>Bots:</strong> Telegram Bots, automation agents</li>
-                            <li><strong>Research:</strong> 2 published international conference papers</li>
-                        </ul>
+                    <div class="stat">
+                        <div class="stat-n">4000+</div>
+                        <div class="stat-l">Daily ERP Users</div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- Audio Controls -->
-    <div class="audio-controls">
-        <button class="audio-btn" onclick="toggleVolume()" title="Toggle Volume">
-            <i class="fas fa-volume-up" id="volume-icon"></i>
-        </button>
-        <button class="audio-btn" onclick="togglePlay()" title="Play/Pause">
-            <i class="fas fa-play" id="play-icon"></i>
-        </button>
-        <button class="audio-btn" onclick="nextTrack()" title="Next Track">
-            <i class="fas fa-step-forward"></i>
-        </button>
-    </div>
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="wrap">
+            <p class="sec-tag rv">Capabilities</p>
+            <h2 class="sec-h rv rv-1">Technical Skills</h2>
+            <div class="sk-grid">
+                <div class="sk-box rv">
+                    <div class="sk-title"><i class="fas fa-code"></i> Languages &amp; Frameworks</div>
+                    <ul class="sk-list">
+                        <li><img src="https://cdn.simpleicons.org/javascript" alt="JS"> JavaScript (ES6+)</li>
+                        <li><img src="https://cdn.simpleicons.org/python" alt="Python"> Python</li>
+                        <li><img src="https://cdn.simpleicons.org/php" alt="PHP"> PHP</li>
+                        <li><img src="https://cdn.simpleicons.org/mysql" alt="SQL"> SQL</li>
+                        <li><img src="https://cdn.simpleicons.org/gnubash" alt="Bash"> Bash</li>
+                        <li><img src="https://cdn.simpleicons.org/laravel" alt="Laravel"> Laravel</li>
+                        <li><img src="https://cdn.simpleicons.org/django" alt="Django"> Django</li>
+                        <li><img src="https://cdn.simpleicons.org/flask" alt="Flask"> Flask</li>
+                        <li><img src="https://cdn.simpleicons.org/fastapi" alt="FastAPI"> FastAPI</li>
+                        <li><img src="https://cdn.simpleicons.org/wordpress" alt="WordPress"> WordPress</li>
+                    </ul>
+                </div>
+                <div class="sk-box rv rv-1">
+                    <div class="sk-title"><i class="fas fa-cloud"></i> Cloud &amp; DevOps</div>
+                    <ul class="sk-list">
+                        <li>
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" />
 
-    <!-- Projects Modal -->
-    <div class="projects-section" id="projects-section">
-        <div class="projects-container">
-            <i class="fas fa-times close-projects" onclick="toggleProjects(event)"></i>
-            <div class="projects-header">
-                <h2 class="projects-title">My Projects</h2>
-                <p>A collection of work spanning web development, AI/ML, DevOps, security, and creative technology</p>
+                            AWS
+                        </li>
+                        <li><img src="https://cdn.simpleicons.org/googlecloud" alt=""> GCP</li>
+                        <li><img src="https://cdn.simpleicons.org/digitalocean" alt=""> DigitalOcean</li>
+                        <li><img src="https://www.vectorlogo.zone/logos/oracle/oracle-icon.svg" alt=""> Oracle Cloud /
+                            Linode</li>
+                        <li><img src="https://cdn.simpleicons.org/docker" alt=""> Docker</li>
+                        <li><img src="https://cdn.simpleicons.org/podman" alt=""> Podman</li>
+                        <li><img src="https://cdn.simpleicons.org/kubernetes" alt=""> Kubernetes</li>
+                        <li><img src="https://cdn.simpleicons.org/git" alt=""> Git</li>
+                        <li><img src="https://cdn.simpleicons.org/githubactions" alt=""> GitHub Actions</li>
+                        <li><img src="https://cdn.simpleicons.org/gitlab" alt=""> GitLab CI</li>
+                        <li><img src="https://cdn.simpleicons.org/linux" alt=""> Linux Administration</li>
+                    </ul>
+                </div>
+                <div class="sk-box rv rv-2">
+                    <div class="sk-title"><i class="fas fa-brain"></i> AI / ML</div>
+                    <ul class="sk-list">
+                        <li><img src="https://comfy.org/icons/logomark.svg" alt=""> ComfyUI</li>
+                        <li><img src="https://cdn.simpleicons.org/n8n" alt=""> n8n</li>
+                        <li><img src="https://cdn.simpleicons.org/tensorflow" alt=""> TensorFlow</li>
+                        <li><img src="https://cdn.simpleicons.org/claude" alt=""> LLM Integration</li>
+                        <li><img src="https://cdn.simpleicons.org/googlegemini" alt=""> Gemini API</li>
+                        <li><img class="ollama" src="https://cdn.simpleicons.org/ollama" alt=""> Ollama</li>
+                        <li><img src="https://cdn.simpleicons.org/chainlink" alt=""> Agentic Pipelines</li>
+                        <li><img src="https://cdn.simpleicons.org/streamlit" alt=""> Gradio / Streamlit</li>
+                        <li><img src="https://cdn.simpleicons.org/pytorch" alt=""> LoRA Training</li>
+                    </ul>
+                </div>
+                <div class="sk-box rv rv-3">
+                    <div class="sk-title"><i class="fas fa-database"></i> Databases &amp; Security</div>
+                    <ul class="sk-list">
+                        <li><img src="https://cdn.simpleicons.org/mysql" alt=""> MySQL / MariaDB</li>
+                        <li><img src="https://cdn.simpleicons.org/redis" alt=""> Redis</li>
+                        <li><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" />
+                            S3</li>
+                        <li><img src="https://www.trychroma.com/img/favicon.ico" alt=""> ChromaDB</li>
+                        <li><img src="https://cdn.simpleicons.org/ethereum" alt=""> Blockchain / Ethereum</li>
+                        <li><img src="https://cdn.simpleicons.org/fortinet" alt=""> Security Hardening</li>
+                        <li><img src="https://cdn.simpleicons.org/comptia" alt=""> CompTIA Security+</li>
+                        <li><img src="https://cdn.simpleicons.org/graylog" alt=""> GrayLog / Grafana</li>
+                    </ul>
+                </div>
+                <div class="sk-box rv rv-4">
+                    <div class="sk-title"><i class="fas fa-mobile-screen"></i> Mobile &amp; Self-Hosted</div>
+                    <ul class="sk-list">
+                        <li><img src="https://cdn.simpleicons.org/flutter" alt=""> Flutter (Android &amp; TV)</li>
+                        <li><img src="https://cdn.simpleicons.org/ffmpeg" alt=""> FFmpeg</li>
+                        <li><img src="https://www.libtorrent.org/img/logo-color.png" alt=""> libtorrent</li>
+                        <li><img src="https://cdn.simpleicons.org/ntfy" alt=""> NTFY</li>
+                        <li><img src="https://cdn.simpleicons.org/android" alt=""> Android</li>
+                        <li><img src="https://cdn.simpleicons.org/homeassistant" alt=""> Self-Hosted Infrastructure</li>
+                    </ul>
+                </div>
+                <div class="sk-box rv rv-4">
+                    <div class="sk-title"><i class="fas fa-wrench"></i> Automation &amp; Other</div>
+                    <ul class="sk-list">
+                        <li><img src="https://cdn.simpleicons.org/selenium" alt=""> Selenium</li>
+                        <li><img src="https://playwright.dev/img/playwright-logo.ico" alt=""> Playwright / Helium</li>
+                        <li><img src="https://cdn.simpleicons.org/octoprint" alt=""> Web Scraping</li>
+                        <li><img src="https://cdn.simpleicons.org/telegram" alt=""> Telegram Bots</li>
+                        <li><img src="https://cdn.simpleicons.org/arduino" alt=""> IoT Integration</li>
+                        <li><img src="https://cdn.simpleicons.org/ipfs" alt=""> IPFS</li>
+                        <li><img src="https://cdn.simpleicons.org/solidity" alt=""> Smart Contracts</li>
+                    </ul>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Filter Tabs -->
-            <div class="project-filters">
-                <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
-                <button class="filter-btn" onclick="filterProjects('ai', this)">AI/ML</button>
-                <button class="filter-btn" onclick="filterProjects('web', this)">Web</button>
-                <button class="filter-btn" onclick="filterProjects('devops', this)">DevOps</button>
-                <button class="filter-btn" onclick="filterProjects('mobile', this)">Mobile</button>
-                <button class="filter-btn" onclick="filterProjects('research', this)">Research</button>
-                <button class="filter-btn" onclick="filterProjects('security', this)">Security</button>
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="wrap">
+            <p class="sec-tag rv">Work</p>
+            <h2 class="sec-h rv rv-1">Projects</h2>
+            <div class="filt-bar rv rv-2">
+                <button class="filt on" data-f="all">All</button>
+                <button class="filt" data-f="ai">AI / ML</button>
+                <button class="filt" data-f="web">Web</button>
+                <button class="filt" data-f="devops">DevOps</button>
+                <button class="filt" data-f="mobile">Mobile</button>
+                <button class="filt" data-f="research">Research</button>
+                <button class="filt" data-f="security">Security</button>
             </div>
+            <div class="pj-grid" id="pjGrid">
 
-            <div class="projects-grid" id="projects-grid">
+                <article class="pj rv" data-cat="ai,web">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/mysql" alt="SQL"></div>
+                    <div class="pj-name">SQLPilot</div>
+                    <div class="pj-tech">Python · FastAPI · sqlparse · OpenAI API</div>
+                    <div class="pj-tags"><span class="t t-ai">AI/ML</span><span class="t t-web">Python Library</span>
+                    </div>
+                    <p class="pj-desc">AI-powered MySQL tool-calling toolkit with fine-grained security constraints.
+                        Gives any LLM structured, constraint-enforced access to MySQL via OpenAI-compatible function
+                        calling. Features SQL Guard (sqlparse-based validation), column-level blocking, paginated
+                        results, pip-installable API, and a 3-panel test bench UI.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- WatchList -->
-                <div class="project-card" data-categories="web,mobile,devops">
-                    <div class="project-icon"><i class="fas fa-film"></i></div>
-                    <h3 class="project-name">WatchList</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-web">Web App</span>
-                        <span class="project-tag tag-mobile">Android App</span>
-                        <span class="project-tag tag-mobile">TV App</span>
-                        <span class="project-tag tag-devops">Self-Hosted</span>
-                    </div>
-                    <p class="project-description">Self-hosted media watchlist with torrent search, in-browser streaming via libtorrent + FFmpeg transcoding, TMDB integration, episode tracking, and push notifications. Available as a web app, Android app, and TV app (Flutter with built-in video player). Multi-user, mobile-friendly, and fully private.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                <article class="pj rv rv-1" data-cat="ai,web">
+                    <div class="pj-icon"><img src="icons/basalt.png" alt="Basalt"></div>
+                    <div class="pj-name">Basalt</div>
+                    <div class="pj-tech">Python · ChromaDB · MarkItDown · OpenAI API</div>
+                    <div class="pj-tags"><span class="t t-ai">AI/ML</span><span class="t t-web">Python
+                            Library</span><span class="t t-ai">RAG</span></div>
+                    <p class="pj-desc">Zero-hallucination, model-agnostic dynamic knowledge base system. Works with any
+                        LLM provider using bounded context injection &mdash; 200&ndash;800 tokens of precise content,
+                        not massive context dumps. Dual-mode search, multi-round retrieval, isolated KBs, and source
+                        citations.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- Vaultarr -->
-                <div class="project-card" data-categories="devops,web">
-                    <div class="project-icon"><i class="fas fa-hdd"></i></div>
-                    <h3 class="project-name">Vaultarr</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-devops">Self-Hosted</span>
-                        <span class="project-tag tag-web">Web UI</span>
-                        <span class="project-tag tag-devops">CLI</span>
+                <article class="pj rv rv-2" data-cat="ai,web">
+                    <div class="pj-icon"><img src="https://comfy.org/icons/logomark.svg" alt=""></div>
+                    <div class="pj-name">Comfy Architect</div>
+                    <div class="pj-tech">Node.js · Vite · Vanilla JS · WebSockets</div>
+                    <div class="pj-tags"><span class="t t-ai">Agentic AI</span><span class="t t-web">Web App</span>
                     </div>
-                    <p class="project-description">Unified self-hosted backup system with a full web UI and CLI. Supports Local and Google Drive providers, backs up Files & Folders, GitHub repos, and YouTube Music playlists. Features hash-based change detection, FIFO retention, cron/interval scheduling, NTFY push notifications, and multi-instance sync for disaster recovery.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                    <p class="pj-desc">Advanced agentic workbench for building ComfyUI workflows through natural
+                        language. The AI auto-discovers nodes, validates type-safe connections, and self-corrects.
+                        Features real-time WebSocket blueprint sync, diff highlighting, interactive node mentions, and
+                        one-click workflow downloads.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- YTMusic Vault -->
-                <div class="project-card" data-categories="web,devops">
-                    <div class="project-icon"><i class="fas fa-music"></i></div>
-                    <h3 class="project-name">YTMusic Vault</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-web">Web App</span>
-                        <span class="project-tag tag-ai">AI-Powered</span>
-                        <span class="project-tag tag-devops">Self-Hosted</span>
-                    </div>
-                    <p class="project-description">Local web app to backup, restore, sort, and manage YouTube Music playlists. Features diff comparison between backups, cross-backup search, genre-based auto-sorting via Last.fm, and AI-powered merge and reclassification using Gemini. Fully private — all data stays local.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                <article class="pj rv" data-cat="ai,devops,web">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/claude" alt=""></div>
+                    <div class="pj-name">AI Agent Tools</div>
+                    <div class="pj-tech">Python · JavaScript · Tampermonkey · Docker</div>
+                    <div class="pj-tags"><span class="t t-ai">AI/ML</span><span class="t t-web">Browser
+                            Extension</span><span class="t t-devops">Developer Tool</span></div>
+                    <p class="pj-desc">Universal agentic coding toolkit &mdash; one local server with Tampermonkey
+                        userscripts for Claude, ChatGPT, and Arena. AI outputs structured action blocks; the script
+                        injects buttons and optionally executes everything automatically in Auto Mode. Supports file
+                        read/write, patching, shell commands, context memory, and Docker isolation.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- Log Sentinel -->
-                <div class="project-card" data-categories="security,devops">
-                    <div class="project-icon"><i class="fas fa-shield"></i></div>
-                    <h3 class="project-name">Log Sentinel</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-security">Security</span>
-                        <span class="project-tag tag-devops">Self-Hosted</span>
-                        <span class="project-tag tag-devops">Daemon</span>
+                <article class="pj rv rv-1" data-cat="ai">
+                    <div class="pj-icon"><img src="https://comfy.org/icons/logomark.svg" alt="Suite"></div>
+                    <div class="pj-name">AI Generation Suite</div>
+                    <div class="pj-tech">ComfyUI · Python · CivitAI · FLUX / SDXL</div>
+                    <div class="pj-tags"><span class="t t-ai">Generative AI</span><span class="t t-ai">ComfyUI</span>
                     </div>
-                    <p class="project-description">Lightweight Python daemon monitoring system logs for suspicious activity — SSH brute-force, Fail2ban events, Dovecot/Postfix failures, Nginx probes, and sudo abuse. Config-driven with regex pattern matching, fixed-window deduplication, log rotation awareness, persistent state, and real-time NTFY push alerts.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                    <p class="pj-desc">Complete local AI ecosystem supporting FLUX, SDXL, SD1.5 models with advanced
+                        features: image generation, inpainting, upscaling, face swap, and multi-server workflow
+                        management. Built on ComfyUI and CivitAI with a custom interactive GUI and automated pipeline
+                        orchestration.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- AI Agent Tools -->
-                <div class="project-card" data-categories="ai,devops,web">
-                    <div class="project-icon"><i class="fas fa-robot"></i></div>
-                    <h3 class="project-name">AI Agent Tools</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-ai">AI/ML</span>
-                        <span class="project-tag tag-web">Browser Extension</span>
-                        <span class="project-tag tag-devops">Developer Tool</span>
-                    </div>
-                    <p class="project-description">Universal agentic coding toolkit — one local server with Tampermonkey userscripts for Claude, ChatGPT, and Arena. AI outputs structured action blocks; the script injects buttons and optionally executes everything automatically in Auto Mode. Supports file read/write, patching, shell commands, context memory, and Docker isolation.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                <article class="pj rv rv-2" data-cat="ai">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/tensorflow" alt="NLP"></div>
+                    <div class="pj-name">AI Detector &amp; Paraphraser</div>
+                    <div class="pj-tech">Python · TensorFlow · NLP · PAN25 Dataset</div>
+                    <div class="pj-tags"><span class="t t-ai">AI/ML</span><span class="t t-ai">NLP</span></div>
+                    <p class="pj-desc">Advanced AI content detection and intelligent paraphrasing tool. Custom AI
+                        detector trained on PAN 25 dataset (360k+ variants) achieving GPTZero-level accuracy. Humanizer
+                        bypasses major detection systems including Turnitin and GPTZero with high reliability.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- AI Detector & Paraphraser -->
-                <div class="project-card" data-categories="ai">
-                    <div class="project-icon"><i class="fas fa-user-secret"></i></div>
-                    <h3 class="project-name">AI Detector & Paraphraser</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-ai">AI/ML</span>
-                        <span class="project-tag tag-ai">NLP</span>
-                    </div>
-                    <p class="project-description">Advanced AI content detection and intelligent paraphrasing tool. Custom AI detector trained on PAN 25 dataset (360k+ variants) achieving GPTZero-level accuracy. Humanizer bypasses major detection systems including Turnitin and GPTZero with high reliability.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                <article class="pj rv" data-cat="web,mobile,devops">
+                    <div class="pj-icon"><img
+                            src="https://watchlist.gujju-devs.duckdns.org/static/icons/favicon-96x96.png"
+                            alt="WatchList"></div>
+                    <div class="pj-name">WatchList</div>
+                    <div class="pj-tech">Python · Flask · libtorrent · FFmpeg · Flutter</div>
+                    <div class="pj-tags"><span class="t t-web">Web App</span><span class="t t-mob">Android</span><span
+                            class="t t-mob">TV App</span><span class="t t-devops">Self-Hosted</span></div>
+                    <p class="pj-desc">Self-hosted media watchlist with torrent search, in-browser streaming via
+                        libtorrent + FFmpeg transcoding, TMDB integration, episode tracking, and push notifications.
+                        Available as a web app, Android app, and TV app (Flutter with built-in video player).
+                        Multi-user, mobile-friendly, and fully private.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- AI Image Generator -->
-                <div class="project-card" data-categories="ai">
-                    <div class="project-icon"><i class="fas fa-image"></i></div>
-                    <h3 class="project-name">AI Generation Suite</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-ai">Generative AI</span>
-                        <span class="project-tag tag-ai">ComfyUI</span>
-                    </div>
-                    <p class="project-description">Complete local AI ecosystem supporting FLUX, SDXL, SD1.5 models with advanced features: image generation, inpainting, upscaling, face swap, and multi-server workflow management. Built on ComfyUI and CivitAI with a custom interactive GUI and automated pipeline orchestration.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                <article class="pj rv rv-1" data-cat="devops,web">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/googledrive" alt="Vaultarr"></div>
+                    <div class="pj-name">Vaultarr</div>
+                    <div class="pj-tech">Python · Flask · HTMX · Google Drive API</div>
+                    <div class="pj-tags"><span class="t t-devops">Self-Hosted</span><span class="t t-web">Web
+                            UI</span><span class="t t-devops">CLI</span></div>
+                    <p class="pj-desc">Unified self-hosted backup system with a full web UI and CLI. Supports Local and
+                        Google Drive providers, backs up Files &amp; Folders, GitHub repos, and YouTube Music playlists.
+                        Features hash-based change detection, FIFO retention, cron/interval scheduling, NTFY push
+                        notifications, and multi-instance sync for disaster recovery.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- SQLMind -->
-                <div class="project-card" data-categories="ai,web">
-                    <div class="project-icon"><i class="fas fa-database"></i></div>
-                    <h3 class="project-name">SQLMind</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-ai">AI/ML</span>
-                        <span class="project-tag tag-web">Tool</span>
-                    </div>
-                    <p class="project-description">Talk to ANY MySQL database using natural language. AI-powered database retriever that translates natural language queries to SQL and returns results. Integrates as an agentic tool for any LLM supporting function calling, enabling AI assistants to query databases directly.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                <article class="pj rv rv-2" data-cat="web,devops,ai">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/youtubemusic" alt="YT"></div>
+                    <div class="pj-name">YTMusic Vault</div>
+                    <div class="pj-tech">Python · Flask · YouTube Data API · Gemini API</div>
+                    <div class="pj-tags"><span class="t t-web">Web App</span><span class="t t-ai">AI-Powered</span><span
+                            class="t t-devops">Self-Hosted</span></div>
+                    <p class="pj-desc">Local web app to backup, restore, sort, and manage YouTube Music playlists.
+                        Features diff comparison between backups, cross-backup search, genre-based auto-sorting via
+                        Last.fm, and AI-powered merge and reclassification using Gemini. Fully private &mdash; all data
+                        stays local.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- University Management System -->
-                <div class="project-card" data-categories="web">
-                    <div class="project-icon"><i class="fas fa-university"></i></div>
-                    <h3 class="project-name">University Management System</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-web">Enterprise</span>
-                        <span class="project-tag tag-web">Laravel</span>
-                    </div>
-                    <p class="project-description">Full-stack ERP solution serving 4000+ users daily — single-login platform for students, staff, and faculty. Modules include fee management, biometric attendance tracking, examination management, timetables, real-time analytics, S3 storage, and AWS SES email integration.</p>
-                    <div class="project-links">
-                        <a href="https://erp.gmiu.edu.in" target="_blank" class="project-link">View Live <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
+                <article class="pj rv" data-cat="security,devops">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/ntfy" alt="Sentinel"></div>
+                    <div class="pj-name">Log Sentinel</div>
+                    <div class="pj-tech">Python · systemd · NTFY · YAML</div>
+                    <div class="pj-tags"><span class="t t-sec">Security</span><span
+                            class="t t-devops">Self-Hosted</span><span class="t t-devops">Daemon</span></div>
+                    <p class="pj-desc">Lightweight Python daemon monitoring system logs for suspicious activity &mdash;
+                        SSH brute-force, Fail2ban events, Dovecot/Postfix failures, Nginx probes, and sudo abuse.
+                        Config-driven with regex pattern matching, fixed-window deduplication, log rotation awareness,
+                        persistent state, and real-time NTFY push alerts.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- Bird Species Classifier -->
-                <div class="project-card" data-categories="ai,research">
-                    <div class="project-icon"><i class="fas fa-dove"></i></div>
-                    <h3 class="project-name">Bird Species Classifier</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-ai">Deep Learning</span>
-                        <span class="project-tag tag-research">Research</span>
+                <article class="pj rv rv-1" data-cat="web">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/laravel" alt="GMIU"></div>
+                    <div class="pj-name">University Management System</div>
+                    <div class="pj-tech">Laravel · MySQL · AWS (S3 + SES + EC2)</div>
+                    <div class="pj-tags"><span class="t t-web">Enterprise</span><span class="t t-web">Laravel</span>
                     </div>
-                    <p class="project-description">Machine learning model for classifying Indian exotic bird species using EfficientNet architecture. Trained on a curated dataset achieving 95% accuracy in species identification. Built with Python and TensorFlow with a Gradio-based web interface for inference.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                    <p class="pj-desc">Full-stack ERP solution serving 4000+ users daily &mdash; single-login platform
+                        for students, staff, and faculty. Modules include fee management, biometric attendance tracking,
+                        examination management, timetables, real-time analytics, S3 storage, and AWS SES email
+                        integration.</p>
+                    <a href="https://erp.gmiu.edu.in" target="_blank" class="pj-link">View Live <i
+                            class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
 
-                <!-- Event Management -->
-                <div class="project-card" data-categories="web">
-                    <div class="project-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <h3 class="project-name">Event Management Systems</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-web">Web App</span>
-                        <span class="project-tag tag-web">QR Code</span>
-                    </div>
-                    <p class="project-description">Scalable event management platform with QR-based invitation and attendance systems, bulk communication tools, and real-time tracking. Deployed for GMIU Tech Fest 2023 & 2024 (2000+ participants) and Bhavnagar Job Fair 2025 (1000+ registrations).</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                <article class="pj rv rv-2" data-cat="web">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/php" alt="Event"></div>
+                    <div class="pj-name">Event Management Systems</div>
+                    <div class="pj-tech">PHP · MySQL · QR Code · Twilio SMS</div>
+                    <div class="pj-tags"><span class="t t-web">Web App</span><span class="t t-web">QR Code</span></div>
+                    <p class="pj-desc">Scalable event management platform with QR-based invitation and attendance
+                        systems, bulk communication tools, and real-time tracking. Deployed for GMIU Tech Fest 2023
+                        &amp; 2024 (2000+ participants) and Bhavnagar Job Fair 2025 (1000+ registrations).</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- PHP Lite Framework -->
-                <div class="project-card" data-categories="web">
-                    <div class="project-icon"><i class="fas fa-code-branch"></i></div>
-                    <h3 class="project-name">PHPLite Framework</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-web">PHP</span>
-                        <span class="project-tag tag-web">SPA</span>
+                <article class="pj rv" data-cat="ai,research">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/tensorflow" alt="Deep"></div>
+                    <div class="pj-name">Bird Species Classifier</div>
+                    <div class="pj-tech">Python · TensorFlow · EfficientNet · Gradio</div>
+                    <div class="pj-tags"><span class="t t-ai">Deep Learning</span><span class="t t-res">Research</span>
                     </div>
-                    <p class="project-description">Lightweight, high-performance PHP framework as a Laravel alternative for small-to-medium projects. Model-View-Routes architecture with Single Page Application support. Reduced development time by 40% for small projects. Powers multiple production applications including transport and logistics platforms.</p>
-                    <div class="project-links">
-                        <span class="project-link private"><i class="fas fa-lock"></i> Private</span>
-                    </div>
-                </div>
+                    <p class="pj-desc">Machine learning model for classifying Indian exotic bird species using
+                        EfficientNet architecture. Trained on a curated dataset achieving 95% accuracy in species
+                        identification. Built with Python and TensorFlow with a Gradio-based web interface for
+                        inference.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- Aspire Public School -->
-                <div class="project-card" data-categories="web">
-                    <div class="project-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3 class="project-name">Aspire Public School</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-web">WordPress</span>
-                        <span class="project-tag tag-web">Website</span>
+                <article class="pj rv rv-1" data-cat="research,security">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/ethereum" alt="ETH"></div>
+                    <div class="pj-name">Blockchain Research</div>
+                    <div class="pj-tech">Ethereum · Solidity · IPFS · Smart Contracts</div>
+                    <div class="pj-tags"><span class="t t-res">Published</span><span class="t t-sec">Blockchain</span>
                     </div>
-                    <p class="project-description">Modern school website with interactive features and comprehensive information management for the institution.</p>
-                    <div class="project-links">
-                        <a href="https://aspirepublicschool.in" target="_blank" class="project-link">View Live <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
+                    <p class="pj-desc">Two published research papers: (1) Ethereum-based Result Management System with a
+                        lightweight mining algorithm reducing power consumption by 60% &mdash; ARICEMS 2024, Harvard
+                        Club of Boston. (2) Blockchain Court Document Management with IPFS &mdash; International
+                        Conference on Sustainable Development, Delhi-NCR.</p>
+                    <a href="https://londoninstitutesd.co.uk/wp-content/uploads/2025/05/02-ARICON-Aug-2024-Boston-US.pdf"
+                        target="_blank" class="pj-link">Read Paper <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
 
-                <!-- Samarth Spices -->
-                <div class="project-card" data-categories="web">
-                    <div class="project-icon"><i class="fas fa-seedling"></i></div>
-                    <h3 class="project-name">Samarth Dehydration & Spices</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-web">E-commerce</span>
-                        <span class="project-tag tag-web">B2B</span>
-                    </div>
-                    <p class="project-description">International B2B e-commerce platform for spice and dehydration products, serving customers in India and Germany.</p>
-                    <div class="project-links">
-                        <a href="https://samarthspices.de" target="_blank" class="project-link">View Live <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
+                <article class="pj rv rv-2" data-cat="web">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/php" alt="Framework"></div>
+                    <div class="pj-name">PHPLite Framework</div>
+                    <div class="pj-tech">PHP · JavaScript · MVC / MVR</div>
+                    <div class="pj-tags"><span class="t t-web">PHP</span><span class="t t-web">SPA</span></div>
+                    <p class="pj-desc">Lightweight, high-performance PHP framework as a Laravel alternative for
+                        small-to-medium projects. Model-View-Routes architecture with Single Page Application support.
+                        Reduced development time by 40% for small projects. Powers multiple production applications
+                        including transport and logistics platforms.</p>
+                    <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
+                </article>
 
-                <!-- Belmora -->
-                <div class="project-card" data-categories="web">
-                    <div class="project-icon"><i class="fas fa-store"></i></div>
-                    <h3 class="project-name">Belmora</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-web">E-commerce</span>
-                        <span class="project-tag tag-web">WooCommerce</span>
-                    </div>
-                    <p class="project-description">Premium e-commerce platform with modern design and seamless user experience built on WooCommerce.</p>
-                    <div class="project-links">
-                        <a href="https://belmora.in" target="_blank" class="project-link">View Live <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
+                <article class="pj rv" data-cat="web">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/php" alt="Logistics"></div>
+                    <div class="pj-name">Transport &amp; Logistics Apps</div>
+                    <div class="pj-tech">PHP · PHPLite · MySQL · Twilio SMS</div>
+                    <div class="pj-tags"><span class="t t-web">PHPLite</span><span class="t t-web">Platform</span></div>
+                    <p class="pj-desc">Transport Bid Management System connecting truckers with job opportunities, and a
+                        Vehicle Policy Management System with automated Twilio SMS reminders for policy renewals.</p>
+                    <a href="https://thebharatparivahan.com/tbs/" target="_blank" class="pj-link">View Live <i
+                            class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
 
-                <!-- Blockchain Research -->
-                <div class="project-card" data-categories="research,security">
-                    <div class="project-icon"><i class="fas fa-link"></i></div>
-                    <h3 class="project-name">Blockchain Research</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-research">Published</span>
-                        <span class="project-tag tag-security">Blockchain</span>
+                <article class="pj rv rv-1" data-cat="web">
+                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/wordpress" alt="WordPress"></div>
+                    <div class="pj-name">Aspire Public School</div>
+                    <div class="pj-tech">WordPress · PHP · MySQL</div>
+                    <div class="pj-tags"><span class="t t-web">WordPress</span><span class="t t-web">Website</span>
                     </div>
-                    <p class="project-description">Two published research papers: (1) Ethereum-based Result Management System with a lightweight mining algorithm reducing power consumption by 60% — presented at ARICEMS 2024, Harvard Club of Boston. (2) Blockchain Court Document Management with IPFS — International Conference on Sustainable Development, Delhi-NCR.</p>
-                    <div class="project-links">
-                        <a href="https://londoninstitutesd.co.uk/wp-content/uploads/2025/05/02-ARICON-Aug-2024-Boston-US.pdf" target="_blank" class="project-link">Research Paper <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
+                    <p class="pj-desc">Modern school website with interactive features and comprehensive information
+                        management for the institution.</p>
+                    <a href="https://aspirepublicschool.in" target="_blank" class="pj-link">View Live <i
+                            class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
 
-                <!-- Transport Systems -->
-                <div class="project-card" data-categories="web">
-                    <div class="project-icon"><i class="fas fa-truck"></i></div>
-                    <h3 class="project-name">Transport & Logistics Apps</h3>
-                    <div class="project-tags">
-                        <span class="project-tag tag-web">PHPLite</span>
-                        <span class="project-tag tag-web">Platform</span>
+                <article class="pj rv rv-2" data-cat="web">
+                    <div class="pj-icon"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/woocommerce/woocommerce-original.svg"
+                            alt="Woo"></div>
+                    <div class="pj-name">Samarth Dehydration &amp; Spices</div>
+                    <div class="pj-tech">WordPress · WooCommerce · PHP</div>
+                    <div class="pj-tags"><span class="t t-web">E-commerce</span><span class="t t-web">B2B</span></div>
+                    <p class="pj-desc">International B2B e-commerce platform for spice and dehydration products, serving
+                        customers in India and Germany.</p>
+                    <a href="https://samarthspices.de" target="_blank" class="pj-link">View Live <i
+                            class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
+
+                <article class="pj rv" data-cat="web">
+                    <div class="pj-icon"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/woocommerce/woocommerce-original.svg"
+                            alt="Belmora"></div>
+                    <div class="pj-name">Belmora</div>
+                    <div class="pj-tech">WordPress · WooCommerce · PHP</div>
+                    <div class="pj-tags"><span class="t t-web">E-commerce</span><span class="t t-web">WooCommerce</span>
                     </div>
-                    <p class="project-description">Transport Bid Management System connecting truckers with job opportunities, and a Vehicle Policy Management System with automated Twilio SMS reminders for policy renewals.</p>
-                    <div class="project-links">
-                        <a href="https://thebharatparivahan.com/tbs/" target="_blank" class="project-link">View Live <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
+                    <p class="pj-desc">Premium e-commerce platform with modern design and seamless user experience built
+                        on WooCommerce.</p>
+                    <a href="https://belmora.in" target="_blank" class="pj-link">View Live <i
+                            class="fas fa-arrow-up-right-from-square"></i></a>
+                </article>
 
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Contact -->
-    <footer id="contact" class="section">
-        <div class="footer-content fade-in-up">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="hero-description" style="margin-bottom: 3rem;">
-                Always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out.
-            </p>
-            <div class="contact-links">
-                <a href="mailto:jograna.bhumit@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> jograna.bhumit@gmail.com</a>
-                <a href="https://linkedin.com/in/jograna-bhumit" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="wrap">
+            <p class="sec-tag rv">Career</p>
+            <h2 class="sec-h rv rv-1">Experience &amp; Education</h2>
+            <div class="tl rv rv-2">
+                <div class="tl-it">
+                    <div class="tl-dot"></div>
+                    <div class="tl-top">
+                        <span class="tl-role">Research &amp; Development Engineer &middot; IT Infrastructure Lead</span>
+                        <span class="tl-date">Feb 2023 &ndash; May 2025</span>
+                    </div>
+                    <div class="tl-org">Gyanmanjari Innovative University</div>
+                    <ul class="tl-ul">
+                        <li>Architected and deployed a full-stack College Management ERP serving 4000+ students and 250+
+                            faculty with single-login, fee management, biometric attendance, and exam modules</li>
+                        <li>Led blockchain and AI research resulting in 2 publications at international conferences
+                            (Harvard Club of Boston; Delhi-NCR)</li>
+                        <li>Improved system efficiency by 70% through automation tools, optimized ISO workflows, and IoT
+                            integrations (eSSL biometric)</li>
+                        <li>Managed AWS/cloud server infrastructure, security hardening, and CI/CD pipelines for
+                            university-wide production systems</li>
+                        <li>Built custom AI tools &mdash; detection models, image generation pipelines, and LLM
+                            integrations &mdash; deployed across university workflows</li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> Jograna Bhumit. Crafted with code and creativity.</p>
+            <div class="tl-spacer"></div>
+            <div class="edu-row rv rv-3">
+                <div class="edu">
+                    <div class="edu-deg">Bachelor of Engineering &mdash; Computer / IT</div>
+                    <div class="edu-sch">Gujarat Technological University</div>
+                    <div class="edu-meta">Aug 2022 &ndash; May 2025 &middot; CGPA 8.34 / 10</div>
+                </div>
+                <div class="edu">
+                    <div class="edu-deg">Diploma in Engineering</div>
+                    <div class="edu-sch">Gujarat Technological University</div>
+                    <div class="edu-meta">Jun 2019 &ndash; Jun 2022 &middot; CGPA 8.75 / 10</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research" class="sec-surf">
+        <div class="wrap">
+            <p class="sec-tag rv">Publications</p>
+            <h2 class="sec-h rv rv-1">Research</h2>
+            <div class="res-list rv rv-2">
+                <div class="res-it">
+                    <div>
+                        <div class="res-t">Ethereum-Based Result Management System with Lightweight Mining Algorithm
+                        </div>
+                        <div class="res-v">ARICEMS 2024 &middot; Harvard Club of Boston, U.S.</div>
+                        <div class="res-sub">Lightweight mining algorithm reducing power consumption by 60% while
+                            maintaining immutability for academic records.</div>
+                    </div>
+                    <a href="https://londoninstitutesd.co.uk/wp-content/uploads/2025/05/02-ARICON-Aug-2024-Boston-US.pdf"
+                        target="_blank" class="res-btn">Read Paper <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <div class="res-it">
+                    <div>
+                        <div class="res-t">Blockchain Court Document Management System</div>
+                        <div class="res-v">Int'l Conference on Sustainable Development &middot; Gateway Institute,
+                            Delhi-NCR</div>
+                        <div class="res-sub">Decentralized document management using Ethereum and IPFS with smart
+                            contract automation for legal transparency.</div>
+                    </div>
+                    <span class="res-pub">Published</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="wrap">
+            <p class="sec-tag rv">Get in touch</p>
+            <h2 class="sec-h rv rv-1">Contact</h2>
+            <div class="ct-row">
+                <div class="ct-intro rv rv-2">
+                    <p>Open to discussing new projects, technical challenges, or opportunities to build something
+                        meaningful. I work across the full stack and am comfortable taking ownership from architecture
+                        through deployment.</p>
+                    <p class="ct-note">The best way to reach me is email. I typically respond within 24 hours.
+                    </p>
+                </div>
+                <div class="ct-links rv rv-3">
+                    <a href="mailto:jograna.bhumit@gmail.com" class="ct-a">
+                        <div class="pj-icon"><img src="https://cdn.simpleicons.org/gmail" alt="GMAIL"></div>
+                        jograna.bhumit@gmail.com
+                    </a>
+                    <a href="https://linkedin.com/in/jograna-bhumit" target="_blank" class="ct-a">
+                        <div class="pj-icon">
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" />
+                        </div>
+                        linkedin.com/in/jograna-bhumit
+                    </a>
+                    <a href="https://github.com/FlaShHolloway" target="_blank" class="ct-a">
+                        <div class="pj-icon"><img class="github" src="https://cdn.simpleicons.org/github" alt="GITHUB">
+                        </div>
+                        github.com/FlaShHolloway
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="wrap ft">
+            <span class="ft-c">&copy; <span id="yr"></span> Bhumit Jograna</span>
+            <div class="ft-links">
+                <a href="https://github.com/FlaShHolloway" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/jograna-bhumit" target="_blank">LinkedIn</a>
+                <a href="#" onclick="generateResume();return false;">Resume</a>
             </div>
         </div>
     </footer>
 
-    <div class="toast" id="toast">
-        <i class="fas fa-music"></i>
-        <span id="toast-message">Now Playing</span>
-    </div>
-
-    <script>
-        function generateStars() {
-            const starsContainer = document.querySelector('.stars');
-            if (!starsContainer) return;
-            for (let i = 0; i < 300; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                const size = Math.random() * 2 + 1;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-
-        const cursor = document.querySelector('.cursor');
-        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-        if (cursor) {
-            document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-            document.addEventListener('mousedown', () => cursor.classList.add('clicked'));
-            document.addEventListener('mouseup', () => cursor.classList.remove('clicked'));
-            function updateCursor() {
-                cursorX += (mouseX - cursorX) * 0.1;
-                cursorY += (mouseY - cursorY) * 0.1;
-                cursor.style.left = cursorX + 'px';
-                cursor.style.top = cursorY + 'px';
-                requestAnimationFrame(updateCursor);
-            }
-            updateCursor();
-        }
-
-        // Audio
-        let audio = null, isPlaying = false, isMuted = false, currentTrack = 0;
-        const API_BASE_URL = 'https://api.gujju-devs.duckdns.org';
-        let tracks = [];
-
-        async function fetchTracks() {
-            try {
-                const response = await fetch(`${API_BASE_URL}/tracks`);
-                if (!response.ok) return;
-                const fetchedTracks = await response.json();
-                if (fetchedTracks && Array.isArray(fetchedTracks) && fetchedTracks.length > 0) tracks = fetchedTracks;
-            } catch (e) { tracks = []; }
-        }
-
-        async function initAudio() {
-            if (!audio) {
-                audio = new Audio();
-                audio.volume = 0.5;
-                audio.muted = isMuted;
-                audio.addEventListener('ended', nextTrack);
-                audio.addEventListener('error', nextTrack);
-                await fetchTracks();
-            }
-        }
-
-        function togglePlay() {
-            initAudio();
-            if (tracks.length === 0) return;
-            const playIcon = document.getElementById('play-icon');
-            if (isPlaying) {
-                audio.pause();
-                if (playIcon) playIcon.className = 'fas fa-play';
-            } else {
-                if (!audio.src || !audio.src.includes(encodeURI(tracks[currentTrack]))) {
-                    audio.src = `${API_BASE_URL}/tracks/${tracks[currentTrack]}`;
-                }
-                audio.play().catch(() => { if (playIcon) playIcon.className = 'fas fa-play'; isPlaying = false; });
-                if (playIcon) playIcon.className = 'fas fa-pause';
-                showToast('Now Playing: ' + tracks[currentTrack].replace(/\.(mp3|wav|ogg|flac)$/i, ''));
-            }
-            isPlaying = !isPlaying;
-        }
-
-        function toggleVolume() {
-            const volumeIcon = document.getElementById('volume-icon');
-            isMuted = !isMuted;
-            if (audio) audio.muted = isMuted;
-            if (volumeIcon) volumeIcon.className = isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
-        }
-
-        function nextTrack() {
-            if (tracks.length === 0) return;
-            if (!audio) initAudio();
-            currentTrack = (currentTrack + 1) % tracks.length;
-            audio.src = `${API_BASE_URL}/tracks/${tracks[currentTrack]}`;
-            if (isPlaying) {
-                audio.play().catch(() => {});
-                showToast('Now Playing: ' + tracks[currentTrack].replace(/\.(mp3|wav|ogg|flac)$/i, ''));
-            }
-        }
-
-        let toastTimeoutId = null;
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
-            if (!toast || !toastMessage) return;
-            if (toastTimeoutId) clearTimeout(toastTimeoutId);
-            toastMessage.textContent = message;
-            toast.classList.add('show');
-            toastTimeoutId = setTimeout(() => { toast.classList.remove('show'); toastTimeoutId = null; }, 3000);
-        }
-
-        document.addEventListener('DOMContentLoaded', initAudio);
-
-        function toggleProjects(event) {
-            event.preventDefault();
-            const projectsSection = document.getElementById('projects-section');
-            if (!projectsSection) return;
-            const isVisible = projectsSection.style.display === 'block';
-            projectsSection.style.display = isVisible ? 'none' : 'block';
-            document.body.style.overflow = isVisible ? 'auto' : 'hidden';
-        }
-
-        function filterProjects(category, btn) {
-            // Update active button
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Filter cards
-            document.querySelectorAll('.project-card').forEach(card => {
-                if (category === 'all') {
-                    card.setAttribute('data-hidden', 'false');
-                    card.style.display = 'flex';
-                } else {
-                    const categories = card.getAttribute('data-categories') || '';
-                    const show = categories.split(',').includes(category);
-                    card.setAttribute('data-hidden', show ? 'false' : 'true');
-                    card.style.display = show ? 'flex' : 'none';
-                }
-            });
-        }
-
-        // Nav scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        function changeNavOnScroll() {
-            let current = '';
-            sections.forEach(section => {
-                if (pageYOffset >= section.offsetTop - 60) current = section.getAttribute('id');
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) link.classList.add('active');
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            generateStars();
-            document.body.addEventListener('click', () => { if (audio) togglePlay(); }, { once: true });
-            window.addEventListener('scroll', changeNavOnScroll);
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-        });
+    <div class="toast" id="toast"></div>
+    <script type="module">
+        import * as docx from 'https://cdn.jsdelivr.net/npm/docx@8.5.0/+esm';
+        window.docx = docx;
     </script>
+    <script src="script.js" defer></script>
 </body>
+
 </html>
