@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Bhumit Jograna - Developer &amp; AI Engineer</title>
     <meta name="description"
-        content="Portfolio of Bhumit Jograna -- Full-Stack Developer, AI/ML Engineer, and DevOps practitioner.">
+        content="Portfolio of Bhumit Jograna — Full-Stack Developer, AI/ML Engineer, and DevOps practitioner.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
@@ -15,6 +17,25 @@
 </head>
 
 <body>
+
+    <!-- CURSOR -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- AMBIENT ORBS -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+
+    <!-- BACKGROUND PARTICLE CANVAS -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- SCROLL PROGRESS -->
+    <div id="scroll-progress"></div>
+
+    <!-- BACK TO TOP -->
+    <button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
     <!-- NAV -->
     <nav class="topbar">
@@ -35,7 +56,6 @@
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-
             <button class="ham" id="ham" aria-label="Menu"><i class="fas fa-bars"></i></button>
         </div>
         <div class="mob-menu" id="mob">
@@ -54,7 +74,7 @@
             <div class="hero-box">
                 <p class="hero-tag rv">Hunt for the new never ends!</p>
                 <h1 class="hero-name rv rv-1">Bhumit Jograna</h1>
-                <p class="hero-role rv rv-2">Full-Stack Developer &middot; AI/ML Engineer &middot; DevOps</p>
+                <p class="hero-role rv rv-2"></p>
                 <p class="hero-text rv rv-3">I build things that work in production &mdash; agentic AI pipelines,
                     self-hosted systems, enterprise platforms, and everything in between. From constraint-enforced LLM
                     tooling to university-scale ERPs to multi-platform media apps, I ship across the full stack.</p>
@@ -62,7 +82,7 @@
                     <a href="#projects" class="btn-fill"><i class="fas fa-layer-group"></i> View Projects</a>
                     <a href="https://github.com/FlaShHolloway" target="_blank" class="btn-ghost"><i
                             class="fab fa-github"></i> GitHub</a>
-                    <button class="btn-ghost" onclick="generateResume()"><i class="fas fa-file-arrow-down"></i> Download
+                    <button class="btn-ghost" onclick="generateResume()"><i class="fas fa-file-arrow-down"></i>
                         Resume</button>
                 </div>
                 <div class="scroll-hint rv rv-4"><span></span> Scroll to explore</div>
@@ -120,93 +140,93 @@
             <p class="sec-tag rv">Capabilities</p>
             <h2 class="sec-h rv rv-1">Technical Skills</h2>
             <div class="sk-grid">
-                <div class="sk-box rv">
+                <div class="sk-box glass-card rv">
                     <div class="sk-title"><i class="fas fa-code"></i> Languages &amp; Frameworks</div>
                     <ul class="sk-list">
-                        <li><img src="https://cdn.simpleicons.org/javascript" alt="JS"> JavaScript (ES6+)</li>
-                        <li><img src="https://cdn.simpleicons.org/python" alt="Python"> Python</li>
-                        <li><img src="https://cdn.simpleicons.org/php" alt="PHP"> PHP</li>
-                        <li><img src="https://cdn.simpleicons.org/mysql" alt="SQL"> SQL</li>
-                        <li><img src="https://cdn.simpleicons.org/gnubash" alt="Bash"> Bash</li>
-                        <li><img src="https://cdn.simpleicons.org/laravel" alt="Laravel"> Laravel</li>
-                        <li><img src="https://cdn.simpleicons.org/django" alt="Django"> Django</li>
-                        <li><img src="https://cdn.simpleicons.org/flask" alt="Flask"> Flask</li>
-                        <li><img src="https://cdn.simpleicons.org/fastapi" alt="FastAPI"> FastAPI</li>
-                        <li><img src="https://cdn.simpleicons.org/wordpress" alt="WordPress"> WordPress</li>
+                        <li><img src="icons/javascript.svg" alt="JS"> JavaScript (ES6+)</li>
+                        <li><img src="icons/python.svg" alt="Python"> Python</li>
+                        <li><img src="icons/react.svg" alt="TS"> React</li>
+                        <li><img src="icons/nodedotjs.svg" alt=""> Node.js</li>
+                        <li><img src="icons/php.svg" alt="PHP"> PHP</li>
+                        <li><img src="icons/mysql.svg" alt="SQL"> SQL</li>
+                        <li><img src="icons/gnubash.svg" alt="Bash"> Bash</li>
+                        <li><img src="icons/laravel.svg" alt="Laravel"> Laravel</li>
+                        <li><img src="icons/django.svg" alt="Django"> Django</li>
+                        <li><img src="icons/flask.svg" alt="Flask"> Flask</li>
+                        <li><img src="icons/fastapi.svg" alt="FastAPI"> FastAPI</li>
+                        <li><img src="icons/wordpress.svg" alt="WordPress"> WordPress</li>
                     </ul>
                 </div>
-                <div class="sk-box rv rv-1">
+                <div class="sk-box glass-card rv rv-1">
                     <div class="sk-title"><i class="fas fa-cloud"></i> Cloud &amp; DevOps</div>
                     <ul class="sk-list">
-                        <li>
-                            <img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" />
-
-                            AWS
-                        </li>
-                        <li><img src="https://cdn.simpleicons.org/googlecloud" alt=""> GCP</li>
-                        <li><img src="https://cdn.simpleicons.org/digitalocean" alt=""> DigitalOcean</li>
-                        <li><img src="https://www.vectorlogo.zone/logos/oracle/oracle-icon.svg" alt=""> Oracle Cloud /
+                        <li><img src="icons/aws.svg" /> AWS</li>
+                        <li><img src="icons/googlecloud.svg" alt=""> GCP</li>
+                        <li><img src="icons/digitalocean.svg" alt=""> DigitalOcean</li>
+                        <li><img src="icons/oracle.svg" alt=""> Oracle Cloud /
                             Linode</li>
-                        <li><img src="https://cdn.simpleicons.org/docker" alt=""> Docker</li>
-                        <li><img src="https://cdn.simpleicons.org/podman" alt=""> Podman</li>
-                        <li><img src="https://cdn.simpleicons.org/kubernetes" alt=""> Kubernetes</li>
-                        <li><img src="https://cdn.simpleicons.org/git" alt=""> Git</li>
-                        <li><img src="https://cdn.simpleicons.org/githubactions" alt=""> GitHub Actions</li>
-                        <li><img src="https://cdn.simpleicons.org/gitlab" alt=""> GitLab CI</li>
-                        <li><img src="https://cdn.simpleicons.org/linux" alt=""> Linux Administration</li>
+                        <li><img src="icons/docker.svg" alt=""> Docker</li>
+                        <li><img src="icons/podman.svg" alt=""> Podman</li>
+                        <li><img src="icons/kubernetes.svg" alt=""> Kubernetes</li>
+                        <li><img src="icons/git.svg" alt=""> Git</li>
+                        <li><img src="icons/githubactions.svg" alt=""> GitHub Actions</li>
+                        <li><img src="icons/gitlab.svg" alt=""> GitLab CI</li>
+                        <li><img src="icons/linux.svg" alt=""> Linux Systems</li>
+                        <li><img src="icons/nginx.svg" alt=""> Nginx</li>
                     </ul>
                 </div>
-                <div class="sk-box rv rv-2">
+                <div class="sk-box glass-card rv rv-2">
                     <div class="sk-title"><i class="fas fa-brain"></i> AI / ML</div>
                     <ul class="sk-list">
-                        <li><img src="https://comfy.org/icons/logomark.svg" alt=""> ComfyUI</li>
-                        <li><img src="https://cdn.simpleicons.org/n8n" alt=""> n8n</li>
-                        <li><img src="https://cdn.simpleicons.org/tensorflow" alt=""> TensorFlow</li>
-                        <li><img src="https://cdn.simpleicons.org/claude" alt=""> LLM Integration</li>
-                        <li><img src="https://cdn.simpleicons.org/googlegemini" alt=""> Gemini API</li>
-                        <li><img class="ollama" src="https://cdn.simpleicons.org/ollama" alt=""> Ollama</li>
-                        <li><img src="https://cdn.simpleicons.org/chainlink" alt=""> Agentic Pipelines</li>
-                        <li><img src="https://cdn.simpleicons.org/streamlit" alt=""> Gradio / Streamlit</li>
-                        <li><img src="https://cdn.simpleicons.org/pytorch" alt=""> LoRA Training</li>
+                        <li><img src="icons/comfyui.svg" alt=""> ComfyUI</li>
+                        <li><img src="icons/n8n.svg" alt=""> n8n</li>
+                        <li><img src="icons/tensorflow.svg" alt=""> TensorFlow</li>
+                        <li><img src="icons/pytorch.svg" alt=""> PyTorch</li>
+                        <li><img src="icons/claude.svg" alt=""> LLM Integration</li>
+                        <li><img src="icons/openai.svg" alt=""> OpenAI</li>   
+                        <li><img src="icons/googlegemini.svg" alt=""> Gemini API</li>
+                        <li><img class="ollama" src="icons/ollama.svg" alt=""> Ollama</li>
+                        <li><img src="icons/chainlink.svg" alt=""> Agentic Pipelines</li>
+                        <li><img src="icons/streamlit.svg" alt=""> Gradio / Streamlit</li>
+                        <li><img src="icons/pytorch.svg" alt=""> LoRA / Fine-tuning</li>
                     </ul>
                 </div>
-                <div class="sk-box rv rv-3">
+                <div class="sk-box glass-card rv rv-3">
                     <div class="sk-title"><i class="fas fa-database"></i> Databases &amp; Security</div>
                     <ul class="sk-list">
-                        <li><img src="https://cdn.simpleicons.org/mysql" alt=""> MySQL / MariaDB</li>
-                        <li><img src="https://cdn.simpleicons.org/redis" alt=""> Redis</li>
-                        <li><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" />
-                            S3</li>
-                        <li><img src="https://www.trychroma.com/img/favicon.ico" alt=""> ChromaDB</li>
-                        <li><img src="https://cdn.simpleicons.org/ethereum" alt=""> Blockchain / Ethereum</li>
-                        <li><img src="https://cdn.simpleicons.org/fortinet" alt=""> Security Hardening</li>
-                        <li><img src="https://cdn.simpleicons.org/comptia" alt=""> CompTIA Security+</li>
-                        <li><img src="https://cdn.simpleicons.org/graylog" alt=""> GrayLog / Grafana</li>
+                        <li><img src="icons/mysql.svg" alt=""> MySQL / MariaDB</li>
+                        <li><img src="icons/redis.svg" alt=""> Redis</li>
+                        <li><img src="icons/aws.svg" /> S3</li>
+                        <li><img src="icons/chromadb.ico" alt=""> ChromaDB</li>
+                        <li><img src="icons/sqlite.svg" alt=""> SQLite</li>
+                        <li><img src="icons/ethereum.svg" alt=""> Blockchain / Ethereum</li>
+                        <li><img src="icons/fortinet.svg" alt=""> Security Hardening</li>
+                        <li><img src="icons/comptia.svg" alt=""> CompTIA Security+</li>
+                        <li><img src="icons/graylog.svg" alt=""> GrayLog / Grafana</li>
                     </ul>
                 </div>
-                <div class="sk-box rv rv-4">
+                <div class="sk-box glass-card rv rv-4">
                     <div class="sk-title"><i class="fas fa-mobile-screen"></i> Mobile &amp; Self-Hosted</div>
                     <ul class="sk-list">
-                        <li><img src="https://cdn.simpleicons.org/flutter" alt=""> Flutter (Android &amp; TV)</li>
-                        <li><img src="https://cdn.simpleicons.org/ffmpeg" alt=""> FFmpeg</li>
-                        <li><img src="https://www.libtorrent.org/img/logo-color.png" alt=""> libtorrent</li>
-                        <li><img src="https://cdn.simpleicons.org/ntfy" alt=""> NTFY</li>
-                        <li><img src="https://cdn.simpleicons.org/android" alt=""> Android</li>
-                        <li><img src="https://cdn.simpleicons.org/homeassistant" alt=""> Self-Hosted Infrastructure</li>
+                        <li><img src="icons/flutter.svg" alt=""> Flutter (Android &amp; TV)</li>
+                        <li><img src="icons/dart.svg" alt=""> Dart</li>
+                        <li><img src="icons/ffmpeg.svg" alt=""> FFmpeg</li>
+                        <li><img src="icons/libtorrent.png" alt=""> libtorrent</li>
+                        <li><img src="icons/ntfy.svg" alt=""> NTFY Push Notifications</li>
+                        <li><img src="icons/android.svg" alt=""> Android</li>
+                        <li><img src="icons/homeassistant.svg" alt=""> Self-Hosted Infrastructure</li>
                     </ul>
                 </div>
-                <div class="sk-box rv rv-4">
+                <div class="sk-box glass-card rv rv-4">
                     <div class="sk-title"><i class="fas fa-wrench"></i> Automation &amp; Other</div>
                     <ul class="sk-list">
-                        <li><img src="https://cdn.simpleicons.org/selenium" alt=""> Selenium</li>
-                        <li><img src="https://playwright.dev/img/playwright-logo.ico" alt=""> Playwright / Helium</li>
-                        <li><img src="https://cdn.simpleicons.org/octoprint" alt=""> Web Scraping</li>
-                        <li><img src="https://cdn.simpleicons.org/telegram" alt=""> Telegram Bots</li>
-                        <li><img src="https://cdn.simpleicons.org/arduino" alt=""> IoT Integration</li>
-                        <li><img src="https://cdn.simpleicons.org/ipfs" alt=""> IPFS</li>
-                        <li><img src="https://cdn.simpleicons.org/solidity" alt=""> Smart Contracts</li>
+                        <li><img src="icons/selenium.svg" alt=""> Selenium</li>
+                        <li><img src="icons/playwright.ico" alt=""> Playwright / Helium</li>
+                        <li><img src="icons/octoprint.svg" alt=""> Web Scraping</li>
+                        <li><img src="icons/telegram.svg" alt=""> Telegram Bots</li>
+                        <li><img src="icons/arduino.svg" alt=""> IoT</li>
+                        <li><img src="icons/ipfs.svg" alt=""> IPFS</li>
+                        <li><img src="icons/solidity.svg" alt=""> Smart Contracts</li>
                     </ul>
                 </div>
             </div>
@@ -229,8 +249,8 @@
             </div>
             <div class="pj-grid" id="pjGrid">
 
-                <article class="pj rv" data-cat="ai,web">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/mysql" alt="SQL"></div>
+                <article class="pj glass-card rv" data-cat="ai,web">
+                    <div class="pj-icon"><img src="icons/mysql.svg" alt="SQL"></div>
                     <div class="pj-name">SQLPilot</div>
                     <div class="pj-tech">Python · FastAPI · sqlparse · OpenAI API</div>
                     <div class="pj-tags"><span class="t t-ai">AI/ML</span><span class="t t-web">Python Library</span>
@@ -242,7 +262,7 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv rv-1" data-cat="ai,web">
+                <article class="pj glass-card rv rv-1" data-cat="ai,web">
                     <div class="pj-icon"><img src="icons/basalt.png" alt="Basalt"></div>
                     <div class="pj-name">Basalt</div>
                     <div class="pj-tech">Python · ChromaDB · MarkItDown · OpenAI API</div>
@@ -255,8 +275,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv rv-2" data-cat="ai,web">
-                    <div class="pj-icon"><img src="https://comfy.org/icons/logomark.svg" alt=""></div>
+                <article class="pj glass-card rv rv-2" data-cat="ai,web">
+                    <div class="pj-icon"><img src="icons/comfyui.svg" alt=""></div>
                     <div class="pj-name">Comfy Architect</div>
                     <div class="pj-tech">Node.js · Vite · Vanilla JS · WebSockets</div>
                     <div class="pj-tags"><span class="t t-ai">Agentic AI</span><span class="t t-web">Web App</span>
@@ -268,8 +288,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv" data-cat="ai,devops,web">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/claude" alt=""></div>
+                <article class="pj glass-card rv" data-cat="ai,devops,web">
+                    <div class="pj-icon"><img src="icons/claude.svg" alt=""></div>
                     <div class="pj-name">AI Agent Tools</div>
                     <div class="pj-tech">Python · JavaScript · Tampermonkey · Docker</div>
                     <div class="pj-tags"><span class="t t-ai">AI/ML</span><span class="t t-web">Browser
@@ -281,8 +301,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv rv-1" data-cat="ai">
-                    <div class="pj-icon"><img src="https://comfy.org/icons/logomark.svg" alt="Suite"></div>
+                <article class="pj glass-card rv rv-1" data-cat="ai">
+                    <div class="pj-icon"><img src="icons/comfyui.svg" alt="Suite"></div>
                     <div class="pj-name">AI Generation Suite</div>
                     <div class="pj-tech">ComfyUI · Python · CivitAI · FLUX / SDXL</div>
                     <div class="pj-tags"><span class="t t-ai">Generative AI</span><span class="t t-ai">ComfyUI</span>
@@ -294,8 +314,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv rv-2" data-cat="ai">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/tensorflow" alt="NLP"></div>
+                <article class="pj glass-card rv rv-2" data-cat="ai">
+                    <div class="pj-icon"><img src="icons/tensorflow.svg" alt="NLP"></div>
                     <div class="pj-name">AI Detector &amp; Paraphraser</div>
                     <div class="pj-tech">Python · TensorFlow · NLP · PAN25 Dataset</div>
                     <div class="pj-tags"><span class="t t-ai">AI/ML</span><span class="t t-ai">NLP</span></div>
@@ -305,10 +325,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv" data-cat="web,mobile,devops">
-                    <div class="pj-icon"><img
-                            src="https://watchlist.gujju-devs.duckdns.org/static/icons/favicon-96x96.png"
-                            alt="WatchList"></div>
+                <article class="pj glass-card rv" data-cat="web,mobile,devops">
+                    <div class="pj-icon"><img src="icons/watchlist.png" alt="WatchList"></div>
                     <div class="pj-name">WatchList</div>
                     <div class="pj-tech">Python · Flask · libtorrent · FFmpeg · Flutter</div>
                     <div class="pj-tags"><span class="t t-web">Web App</span><span class="t t-mob">Android</span><span
@@ -320,8 +338,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv rv-1" data-cat="devops,web">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/googledrive" alt="Vaultarr"></div>
+                <article class="pj glass-card rv rv-1" data-cat="devops,web">
+                    <div class="pj-icon"><img src="icons/googledrive.svg" alt="Vaultarr"></div>
                     <div class="pj-name">Vaultarr</div>
                     <div class="pj-tech">Python · Flask · HTMX · Google Drive API</div>
                     <div class="pj-tags"><span class="t t-devops">Self-Hosted</span><span class="t t-web">Web
@@ -333,8 +351,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv rv-2" data-cat="web,devops,ai">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/youtubemusic" alt="YT"></div>
+                <article class="pj glass-card rv rv-2" data-cat="web,devops,ai">
+                    <div class="pj-icon"><img src="icons/youtubemusic.svg" alt="YT"></div>
                     <div class="pj-name">YTMusic Vault</div>
                     <div class="pj-tech">Python · Flask · YouTube Data API · Gemini API</div>
                     <div class="pj-tags"><span class="t t-web">Web App</span><span class="t t-ai">AI-Powered</span><span
@@ -346,8 +364,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv" data-cat="security,devops">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/ntfy" alt="Sentinel"></div>
+                <article class="pj glass-card rv" data-cat="security,devops">
+                    <div class="pj-icon"><img src="icons/ntfy.svg" alt="Sentinel"></div>
                     <div class="pj-name">Log Sentinel</div>
                     <div class="pj-tech">Python · systemd · NTFY · YAML</div>
                     <div class="pj-tags"><span class="t t-sec">Security</span><span
@@ -359,8 +377,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv rv-1" data-cat="web">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/laravel" alt="GMIU"></div>
+                <article class="pj glass-card rv rv-1" data-cat="web">
+                    <div class="pj-icon"><img src="icons/laravel.svg" alt="GMIU"></div>
                     <div class="pj-name">University Management System</div>
                     <div class="pj-tech">Laravel · MySQL · AWS (S3 + SES + EC2)</div>
                     <div class="pj-tags"><span class="t t-web">Enterprise</span><span class="t t-web">Laravel</span>
@@ -373,8 +391,8 @@
                             class="fas fa-arrow-up-right-from-square"></i></a>
                 </article>
 
-                <article class="pj rv rv-2" data-cat="web">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/php" alt="Event"></div>
+                <article class="pj glass-card rv rv-2" data-cat="web">
+                    <div class="pj-icon"><img src="icons/php.svg" alt="Event"></div>
                     <div class="pj-name">Event Management Systems</div>
                     <div class="pj-tech">PHP · MySQL · QR Code · Twilio SMS</div>
                     <div class="pj-tags"><span class="t t-web">Web App</span><span class="t t-web">QR Code</span></div>
@@ -384,8 +402,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv" data-cat="ai,research">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/tensorflow" alt="Deep"></div>
+                <article class="pj glass-card rv" data-cat="ai,research">
+                    <div class="pj-icon"><img src="icons/tensorflow.svg" alt="Deep"></div>
                     <div class="pj-name">Bird Species Classifier</div>
                     <div class="pj-tech">Python · TensorFlow · EfficientNet · Gradio</div>
                     <div class="pj-tags"><span class="t t-ai">Deep Learning</span><span class="t t-res">Research</span>
@@ -397,8 +415,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv rv-1" data-cat="research,security">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/ethereum" alt="ETH"></div>
+                <article class="pj glass-card rv rv-1" data-cat="research,security">
+                    <div class="pj-icon"><img src="icons/ethereum.svg" alt="ETH"></div>
                     <div class="pj-name">Blockchain Research</div>
                     <div class="pj-tech">Ethereum · Solidity · IPFS · Smart Contracts</div>
                     <div class="pj-tags"><span class="t t-res">Published</span><span class="t t-sec">Blockchain</span>
@@ -411,8 +429,8 @@
                         target="_blank" class="pj-link">Read Paper <i class="fas fa-arrow-up-right-from-square"></i></a>
                 </article>
 
-                <article class="pj rv rv-2" data-cat="web">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/php" alt="Framework"></div>
+                <article class="pj glass-card rv rv-2" data-cat="web">
+                    <div class="pj-icon"><img src="icons/php.svg" alt="Framework"></div>
                     <div class="pj-name">PHPLite Framework</div>
                     <div class="pj-tech">PHP · JavaScript · MVC / MVR</div>
                     <div class="pj-tags"><span class="t t-web">PHP</span><span class="t t-web">SPA</span></div>
@@ -423,8 +441,8 @@
                     <span class="pj-priv"><i class="fas fa-lock"></i> Private</span>
                 </article>
 
-                <article class="pj rv" data-cat="web">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/php" alt="Logistics"></div>
+                <article class="pj glass-card rv" data-cat="web">
+                    <div class="pj-icon"><img src="icons/php.svg" alt="Logistics"></div>
                     <div class="pj-name">Transport &amp; Logistics Apps</div>
                     <div class="pj-tech">PHP · PHPLite · MySQL · Twilio SMS</div>
                     <div class="pj-tags"><span class="t t-web">PHPLite</span><span class="t t-web">Platform</span></div>
@@ -434,8 +452,8 @@
                             class="fas fa-arrow-up-right-from-square"></i></a>
                 </article>
 
-                <article class="pj rv rv-1" data-cat="web">
-                    <div class="pj-icon"><img src="https://cdn.simpleicons.org/wordpress" alt="WordPress"></div>
+                <article class="pj glass-card rv rv-1" data-cat="web">
+                    <div class="pj-icon"><img src="icons/wordpress.svg" alt="WordPress"></div>
                     <div class="pj-name">Aspire Public School</div>
                     <div class="pj-tech">WordPress · PHP · MySQL</div>
                     <div class="pj-tags"><span class="t t-web">WordPress</span><span class="t t-web">Website</span>
@@ -446,10 +464,8 @@
                             class="fas fa-arrow-up-right-from-square"></i></a>
                 </article>
 
-                <article class="pj rv rv-2" data-cat="web">
-                    <div class="pj-icon"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/woocommerce/woocommerce-original.svg"
-                            alt="Woo"></div>
+                <article class="pj glass-card rv rv-2" data-cat="web">
+                    <div class="pj-icon"><img src="icons/woocommerce.svg" alt="Woo"></div>
                     <div class="pj-name">Samarth Dehydration &amp; Spices</div>
                     <div class="pj-tech">WordPress · WooCommerce · PHP</div>
                     <div class="pj-tags"><span class="t t-web">E-commerce</span><span class="t t-web">B2B</span></div>
@@ -459,10 +475,8 @@
                             class="fas fa-arrow-up-right-from-square"></i></a>
                 </article>
 
-                <article class="pj rv" data-cat="web">
-                    <div class="pj-icon"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/woocommerce/woocommerce-original.svg"
-                            alt="Belmora"></div>
+                <article class="pj glass-card rv" data-cat="web">
+                    <div class="pj-icon"><img src="icons/woocommerce.svg" alt="Belmora"></div>
                     <div class="pj-name">Belmora</div>
                     <div class="pj-tech">WordPress · WooCommerce · PHP</div>
                     <div class="pj-tags"><span class="t t-web">E-commerce</span><span class="t t-web">WooCommerce</span>
@@ -506,13 +520,13 @@
             </div>
             <div class="tl-spacer"></div>
             <div class="edu-row rv rv-3">
-                <div class="edu">
-                    <div class="edu-deg">Bachelor of Engineering &mdash; Computer / IT</div>
+                <div class="edu glass-card">
+                    <div class="edu-deg">Bachelor of Engineering &mdash; IT</div>
                     <div class="edu-sch">Gujarat Technological University</div>
                     <div class="edu-meta">Aug 2022 &ndash; May 2025 &middot; CGPA 8.34 / 10</div>
                 </div>
-                <div class="edu">
-                    <div class="edu-deg">Diploma in Engineering</div>
+                <div class="edu glass-card">
+                    <div class="edu-deg">Diploma in Computer Engineering</div>
                     <div class="edu-sch">Gujarat Technological University</div>
                     <div class="edu-meta">Jun 2019 &ndash; Jun 2022 &middot; CGPA 8.75 / 10</div>
                 </div>
@@ -526,7 +540,7 @@
             <p class="sec-tag rv">Publications</p>
             <h2 class="sec-h rv rv-1">Research</h2>
             <div class="res-list rv rv-2">
-                <div class="res-it">
+                <div class="res-it glass-card">
                     <div>
                         <div class="res-t">Ethereum-Based Result Management System with Lightweight Mining Algorithm
                         </div>
@@ -537,7 +551,7 @@
                     <a href="https://londoninstitutesd.co.uk/wp-content/uploads/2025/05/02-ARICON-Aug-2024-Boston-US.pdf"
                         target="_blank" class="res-btn">Read Paper <i class="fas fa-arrow-up-right-from-square"></i></a>
                 </div>
-                <div class="res-it">
+                <div class="res-it glass-card">
                     <div>
                         <div class="res-t">Blockchain Court Document Management System</div>
                         <div class="res-v">Int'l Conference on Sustainable Development &middot; Gateway Institute,
@@ -561,24 +575,19 @@
                     <p>Open to discussing new projects, technical challenges, or opportunities to build something
                         meaningful. I work across the full stack and am comfortable taking ownership from architecture
                         through deployment.</p>
-                    <p class="ct-note">The best way to reach me is email. I typically respond within 24 hours.
-                    </p>
+                    <p class="ct-note">The best way to reach me is email. I typically respond within 24 hours.</p>
                 </div>
                 <div class="ct-links rv rv-3">
-                    <a href="mailto:jograna.bhumit@gmail.com" class="ct-a">
-                        <div class="pj-icon"><img src="https://cdn.simpleicons.org/gmail" alt="GMAIL"></div>
+                    <a href="mailto:jograna.bhumit@gmail.com" class="ct-a glass-card">
+                        <div class="pj-icon"><img src="icons/gmail.svg" alt="GMAIL"></div>
                         jograna.bhumit@gmail.com
                     </a>
-                    <a href="https://linkedin.com/in/jograna-bhumit" target="_blank" class="ct-a">
-                        <div class="pj-icon">
-                            <img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" />
-                        </div>
+                    <a href="https://linkedin.com/in/jograna-bhumit" target="_blank" class="ct-a glass-card">
+                        <div class="pj-icon"><img src="icons/linkedin.svg" /></div>
                         linkedin.com/in/jograna-bhumit
                     </a>
-                    <a href="https://github.com/FlaShHolloway" target="_blank" class="ct-a">
-                        <div class="pj-icon"><img class="github" src="https://cdn.simpleicons.org/github" alt="GITHUB">
-                        </div>
+                    <a href="https://github.com/FlaShHolloway" target="_blank" class="ct-a glass-card">
+                        <div class="pj-icon"><img class="github" src="icons/github.svg" alt="GITHUB"></div>
                         github.com/FlaShHolloway
                     </a>
                 </div>
